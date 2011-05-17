@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE event SYSTEM "../../dtd/event.dtd">
+<event lang="en">
+    <messages>
+        <error>
+            <time>The end time must be bigger than the start time</time>
+            <unavailable>The following dates bellow are unavailable.</unavailable>
+        </error>
+        <check>Please verify the fields in red.</check>
+        <repeat-info>This is a repeating event. Every entry will be modified.</repeat-info>
+        <other-user>This event can not be modified because it belongs to an other user.</other-user>
+    </messages>
+    <new>New event</new>
+    <edit>Edit event</edit>
+    <save>Save</save>
+    <delete>Delete</delete>
+    <cancel>Cancel</cancel>
+    <user>Owner</user>
+    <title>Title</title>
+    <date>Date</date>
+    <whole-day>Whole day</whole-day>
+    <start>Start</start>
+    <end>End</end>
+    <repeat>
+        <title>Repeat</title>
+        <never>Never</never>
+        <daily>Every day</daily>
+        <weekly>Every week</weekly>
+        <half-monthly>Every two weeks</half-monthly>
+        <monthly>Every month</monthly>
+        <yearly>Every year</yearly>
+        <until>Until</until>
+    </repeat>
+    <description>Description</description>
+</event>

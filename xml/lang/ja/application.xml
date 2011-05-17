@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE application SYSTEM "../../dtd/application.dtd">
+<application lang="ja">
+    <page-title>FBM ルーム予約システム</page-title>
+    <months>
+        <month>
+            <full>1 月</full>
+            <short>1 月</short>
+        </month>
+        <month>
+            <full>2 月</full>
+            <short>2 月</short>
+        </month>
+        <month>
+            <full>3 月</full>
+            <short>3 月</short>
+        </month>
+        <month>
+            <full>4 月</full>
+            <short>4 月</short>
+        </month>
+        <month>
+            <full>5 月</full>
+            <short>5 月</short>
+        </month>
+        <month>
+            <full>6 月</full>
+            <short>6 月</short>
+        </month>
+        <month>
+            <full>7 月</full>
+            <short>7 月</short>
+        </month>
+        <month>
+            <full>8 月</full>
+            <short>8 月</short>
+        </month>
+        <month>
+            <full>9 月</full>
+            <short>9 月</short>
+        </month>
+        <month>
+            <full>10 月</full>
+            <short>10 月</short>
+        </month>
+        <month>
+            <full>11 月</full>
+            <short>11 月</short>
+        </month>
+        <month>
+            <full>12 月</full>
+            <short>12 月</short>
+        </month>
+    </months>
+    <days>
+        <day>
+            <full>月曜日</full>
+            <short>月</short>
+        </day>
+        <day>
+            <full>火曜日</full>
+            <short>火</short>
+        </day>
+        <day>
+            <full>水曜日</full>
+            <short>水</short>
+        </day>
+        <day>
+            <full>木曜日</full>
+            <short>木</short>
+        </day>
+        <day>
+            <full>金曜日</full>
+            <short>金</short>
+        </day>
+        <day>
+            <full>土曜日</full>
+            <short>土</short>
+        </day>
+        <day>
+            <full>日曜日</full>
+            <short>日</short>
+        </day>
+    </days>
+    <information-title>お知らせ</information-title>
+    <calendar-choice>カレンダー</calendar-choice>
+    <go-to>日付</go-to>
+</application>

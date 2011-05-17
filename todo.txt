@@ -1,0 +1,58 @@
+tail -f /private/var/log/apache2/error_Log
+
+A implementer
+--------------
+getMaxEvents() si 0 pas tester la disponibilité
+language php => json
+getSiblings() dans eventdialog
+dates = null dans add, update, delete ou getSiblings() dans ces fonctions à partir d'une date
+fichier lock fermé?
+récurrences avancées: on peut définir une liste de date auquel l'événement se répète (via un calendrier où on peut sélectionner les dates)
+synchronisation des objects (voir FileMediator)
+
+ * ne pas soumettre plus qu'une fois, désactiver bouton "sauvegarder" si pas de changements
+ 
+ * si dernière occurence, ne plus demande si on veut modifier toutes les occurences futures
+ * mise à jour d'un événement existant, en changeant le mode pour l'occurence courant.
+    si la nouvelle occurence demandée se chevauche avec l'ancienne, cela doit être refusé
+ * pas d'affichage des "plages indisponibles" si toutes les plages indisponibles
+modifier seulement dates futures pour les occurences
+tous les mises à jour passer par la fonction update
+
+afficher la liste des salles de manière regroupée
+check date with id_event (unset) in controller
+
+if repeat date <= date => error
+
+définir responsable par salle
+
+faire une page d'accueil ou redirection sur la salle par défaut en fonction de l'appartenance (fbm-calencdar-*)
+
+aller à "aujourd'hui"
+regroupement des types de salle
+
+vue semaine
+drag and drop
+copier un événement
+
+Corrections
+-----------
+Par défaut, whole_day sélectionne(change cela)
+dialog-title en fonction de la langue choisie
+
+A revoir
+--------
+EventHandler
+/*DATE_FORMAT(D.begin, '%Y-%m-%d') AS E_Dbegin, */
+Calendar
+date = explode("-", $e->getDate());
+$formattedEvents[$date[2]][] = $e;
+
+rendre les fonctions JS plus lisibles et les séparer selon MVC
+faire le ménage des fonctions JS inutiles
+migration à extjs?
+traitement langues avec php qui retourne un objet js
+
+Solutions temporaires
+-------------------
+span avec le nom de la salle apparaît sous le calendrier (problème contourné avec .remove())

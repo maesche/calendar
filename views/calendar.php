@@ -43,7 +43,7 @@ $_SESSION['DB_LOGGING'] = $room->getIsLogged();
 
 $building = $_SESSION['CURRENT_BUILDING'];
 ?>
-<script type="text/javascript" src="html/js/calendar.js" />
+<script type="text/javascript" src="html/js/calendar.js" ></script>
 
 <div id="cal_agenda">
 <?php

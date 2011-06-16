@@ -21,6 +21,8 @@ class Building {
     public function getName() {
         return $this->name;
     }
+    
+    
 }
 
 ?>

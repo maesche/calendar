@@ -3,8 +3,9 @@
 <!ELEMENT event (messages+, new+, edit+, save+, delete+, cancel+, user+, title+, date+, whole-day+, start+, end+, repeat+, description+)>
 
 <!ELEMENT messages (error+, check+, repeat-info+, other-user+)>
-<!ELEMENT error (time+)>
+<!ELEMENT error (time+, unavailable+)>
 <!ELEMENT time (#PCDATA)>
+<!ELEMENT unavailable (#PCDATA)>
 <!ELEMENT check (#PCDATA)>
 <!ELEMENT repeat-info (#PCDATA)>
 <!ELEMENT other-user (#PCDATA)>

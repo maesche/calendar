@@ -2,7 +2,9 @@ tail -f /private/var/log/apache2/error_Log
 
 A implementer
 --------------
-getMaxEvents() si 0 pas tester la disponibilité
+language room categories / pop up dialog
+
+
 language php => json
 getSiblings() dans eventdialog
 dates = null dans add, update, delete ou getSiblings() dans ces fonctions à partir d'une date

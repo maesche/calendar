@@ -1,5 +1,5 @@
 <!-- BEGIN NEW EVENT DIALOG -->
-<script type="text/javascript" src="html/js/event.js" />
+<script type="text/javascript" src="html/js/event.js" ></script>
 <?php
 include_once("model/class/Event.php");
 session_start();
@@ -96,12 +96,12 @@ if (!$disable) {
                             description) {
                 
             return !(name == '<?php echo $title ?>' &&
-                    edate == '<?php echo $date ?>' &&
+                    edate == '<?php echo $edate ?>' &&
                     startH == '<?php echo $startH ?>' &&
                     startM == '<?Php echo $startM ?>' &&
                     endH == '<?php echo $endH ?>' &&
-                    repeatMode == '<?php echo $repeat_mode ?>' &&
-                    repeatEnd == '<?php echo $repeat_end ?>' &&
+                    repeatMode == '<?php echo $repeatMode ?>' &&
+                    repeatEnd == '<?php echo $repeatEnd ?>' &&
                     description == '<?php echo $description ?>');
         }
 

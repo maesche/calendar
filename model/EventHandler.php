@@ -17,8 +17,6 @@ class EventHandler {
         $db = new Db();
         $events = array();
 
-
-
         $select_Event =
                 "SELECT
                     E.event_id,
@@ -313,8 +311,12 @@ class EventHandler {
 
 //s'il existe un événement pour cette date, on teste la disponibilité de la plage horaire
                 if (isset($currentEvents[$date])) {
-
-                    $isAvailable = $this->isAvailable($currentEvents[$date], $e, $maxEvents);
+                	/*
+                	 * Si maxEvents <= 0, on ne teste pas la disponibilité
+                	 */
+					if ($maxEvents > 0) {
+                   		$isAvailable = $this->isAvailable($currentEvents[$date], $e, $maxEvents);
+					}
                 }
                 if ($isAvailable) {
                     $verifiedEvents["available"][$date] = $e;

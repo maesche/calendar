@@ -288,8 +288,6 @@ class EventHandler {
 
         $maxEvents = $room->getMaxEvents();
 
-
-
         $currentEvents = array();
 
         foreach ($this->getEvents($room, $startDate, $endDate) as $e) {
@@ -344,7 +342,7 @@ class EventHandler {
             $e_end = strtotime($newEvent['end']);
             $e_id = $newEvent['id'];
 
-            $canInsert = ($e_end <= $start || $e_start >= $end);
+            $canInsert = ($e_end <= $start || $e_start >= $end) && !($end == $start) && !($e_end == $e_start);
 
 
 //if (!$canInsert && $id != $e_id) {

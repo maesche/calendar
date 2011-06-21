@@ -137,8 +137,12 @@ class MonthCalendar extends Calendar {
                         $posY = 0;
                         $posX = $array_index;
                         foreach ($events as $e) {
-                            $begin = $e->getHBegin();
-                            $end = $e->getHEnd();
+                        	$begin = $e->getHBegin();
+                        	$end = $e->getHEnd();
+                        	if ($e->getHBegin() == "00:00" && $e->getHEnd() == "00:00") {
+                        		$end = "24:00";
+                        	}
+
                             $title = $e->getTitle();
                             $description = $e->getDescription();
 

@@ -30,7 +30,7 @@ function wholeDay() {
 }
 
 function updateConfirm() {
-    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous vraiment mettre à jour cet événement ainsi que tous ses occurences futures?</p>");
+    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes les réservations futures?</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
@@ -51,7 +51,7 @@ function updateConfirm() {
 }
 
 function confirmChanges(action) {
-    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous supprimer cet événement ainsi que tous ses occurences futures ou uniquement celle sélectionnée?</p>");
+    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous supprimer cet événement y compris toutes ses réservations futures ou uniquement la réservation sélectionnée?</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
@@ -62,12 +62,12 @@ function confirmChanges(action) {
                 $("#modifyall").val("");
                 $( this ).dialog( "close" );
             },
-            "Tous les événements futures": function() {
+            "Toutes les réservations futures": function() {
                 $("#modifyall").val("true");
                 sendForm(action);
                 $( this ).dialog( "close" );
             },
-            "Seulement cette occurence": function() {
+            "Seulement cette réservation": function() {
                 $("#modifyall").val("false");
                 sendForm(action);
                 $( this ).dialog( "close" );

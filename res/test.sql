@@ -26,4 +26,3 @@ FROM
 WHERE
     D.begin >= '2011-04-01' AND D.end <= '2011-04-30 23:59' AND E.room_id=13
 ORDER BY D.begin
-UNION

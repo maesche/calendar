@@ -11,16 +11,18 @@ class BuildingHandler {
 
         $sql_select = "SELECT
                     building_id AS id,
-                    name
-                FROM buildings";
-        $sql_orderby = " ORDER BY name";
+                    b.name AS b_name,
+                    s.name AS s_name
+                FROM buildings b, sites s 
+        		WHERE s.site_id = b.site_id";
+        $sql_orderby = " ORDER BY s.name, b.name";
 
         $sql = $sql_select . $sql_orderby;
 
         $return = $db->select($sql);
 
         foreach ($return as $ret) {
-            $building = new Building($ret["id"], $ret["name"]);
+            $building = new Building($ret["id"], $ret["s_name"] . " " .$ret["b_name"]);
             $buildings[] = $building;
         }
 

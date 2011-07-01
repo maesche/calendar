@@ -5,7 +5,6 @@ include_once("model/class/Event.php");
 session_start();
 include_once("helpers/System.php");
 
-
 $posX = $_GET['posX'];
 $posY = $_GET['posY'];
 
@@ -37,7 +36,6 @@ switch ($mode) {
     case "edit" :
         if (isset($posX) && isset($posY)) {
             $event = $_SESSION['CURRENT_EVENTS'][$posX][$posY];
-
             $uid = $event->getOwner();
 
             $title = $event->getTitle();

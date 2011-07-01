@@ -4,7 +4,8 @@ include_once("helpers" . DIRECTORY_SEPARATOR . "ErrorHandler.php");
 include_once("model/class/Room.php");
 include_once("model/class/Event.php");
 include_once("model/class/Db.php");
-
+require_once('lib/FirePHPCore/FirePHP.class.php');
+ob_start();
 class EventHandler {
 
     /**
@@ -14,6 +15,7 @@ class EventHandler {
      * @return array(Event)
      */
     public function getEvents($room=null, $begin=null, $end=null, $id = null) {
+
         $db = new Db();
         $events = array();
 
@@ -42,20 +44,17 @@ class EventHandler {
         $sql_where = "";
 
         $sql_orderby = "";
-//si aucune id n'est disponible, nous recherchons tous les événements
-//dans l'intervalle indiqué
 
         if ($id == null) {
             $sql_where .= "WHERE ";
-//si la date de début n'est pas nulle
+
             if ($begin != null) {
                 $sql_where .= "D.begin >= '$begin'";
-//si la date de fin n'est pas nulle
+
                 if ($end != null) {
-                    $sql_where .= " AND D.end <= '$end 23:59' AND ";
+                    $sql_where .= " AND D.end <= '$end' AND ";
                 }
             }
-//chercher dans une salle donnée
             if ($room != null) {
                 $roomId = $room->getId();
                 $sql_where .= "E.room_id=$roomId ";
@@ -71,6 +70,7 @@ class EventHandler {
         $sql = $select_Event . $sql_where . $sql_orderby;
 
 
+        
 
         $return = $db->select($sql);
 
@@ -93,7 +93,6 @@ class EventHandler {
             $events[] = $event;
         }
 
-
         return $events;
     }
 
@@ -102,6 +101,7 @@ class EventHandler {
      */
 
     public function getSiblings($event, $after = null) {
+
         $dates = null;
         $db = new Db();
 
@@ -128,7 +128,6 @@ class EventHandler {
             $end = $ret["end"];
             $dates[] = array("event_id" => $id, "date" => $date, "start" => $start, "end" => $end);
         }
-
         return $dates;
     }
 
@@ -246,6 +245,7 @@ class EventHandler {
     }
 
     public function delete($room, $event, $deleteOnlyCurrent = false, $deleteAfter = null, $deleteBefore = null) {
+    	$firephp = FirePHP::getInstance(true);
         $success = true;
         $connection = null;
         $query = null;
@@ -254,11 +254,15 @@ class EventHandler {
         $sql = "DELETE FROM events WHERE event_id = '" . $event->getId() . "'";
         try {
             $db = new Db();
+            $firephp->log($deleteOnlyCurrent, 'deleteOnlyCurrent');
             $siblings = $this->getSiblings($event);
+            $firephp->log($siblings, 'siblings');
             $lastDate = $siblings[count($siblings) - 1]["date"];
+            $firephp->log($lastDate, 'lastDate');
             $isLastElement = $event->getDBegin() >= $lastDate && count($siblings) <= 1;
-
-            if ($deleteOnlyCurrent && !$isLastElement) {
+            $firephp->log(count($siblings), 'countSiblings');
+            $firephp->log($isLast, 'isLast');
+            if ($deleteOnlyCurrent || !$isLastElement) {
                 $sql = "DELETE FROM event_dates WHERE event_date_id = '" . $event->getDateId() . "'";
 
                 if ($deleteAfter != null || $deleteBefore != null) {
@@ -272,7 +276,7 @@ class EventHandler {
                     }
                 }
             }
-
+            $firephp->log($sql, 'sql');
             $success = $db->delete($sql);
         } catch (Exception $e) {
             ErrorHandler::Error($e);
@@ -327,11 +331,16 @@ class EventHandler {
         return $verifiedEvents;
     }
 
+    /**
+     * 
+     * This method checks wether the timetable for the new event is available or not
+     * @param ArrayList<Event> $currentEvents
+     * @param Event $newEvent
+     * @param int $maxEvents
+     */
     private function isAvailable($currentEvents, $newEvent, $maxEvents) {
-
         $nbEvents = 0;
         $canInsert = true;
-
 
         for ($i = 0; $i < count($currentEvents) && $canInsert; $i++) {
             $start = strtotime($currentEvents[$i]['start']);
@@ -342,16 +351,13 @@ class EventHandler {
             $e_end = strtotime($newEvent['end']);
             $e_id = $newEvent['id'];
 
-            $canInsert = ($e_end <= $start || $e_start >= $end) && !($end == $start) && !($e_end == $e_start);
+            $canInsert = ($id == $e_id) || (($e_end <= $start || $e_start >= $end) && !($end == $start) && !($e_end == $e_start));
 
-
-//if (!$canInsert && $id != $e_id) {
             if (!$canInsert) {
                 $nbEvents++;
                 $canInsert = $nbEvents < $maxEvents;
             }
         }
-
 
         return $canInsert;
     }

@@ -9,7 +9,6 @@ include_once("helpers/System.php");
 include_once("helpers/FormValidator.php");
 include_once("model/class/DateCalc.php");
 
-
 session_start();
 $success = false;
 $return = array("success" => true);
@@ -114,7 +113,6 @@ if ($valide) {
 
         $calculateDates = true;
 
-
         $events = null;
         $event = $formEvent;
         if ($action == "edit") {
@@ -146,6 +144,7 @@ if ($valide) {
             } else {
                 $calculateDates = true;
             }
+
             $event->setDBegin($date);
 
             $event->setDEnd($date);
@@ -160,7 +159,9 @@ if ($valide) {
                 $events[$event->getDBegin()][] = array(
                     "start" => $event->getHBegin(),
                     "end" => $event->getHEnd(),
-                    "id" => $event->getDateId());
+                    "id" => $event->getId());
+                
+               
             } else if ($event->getMode() == "a") {
 
             } else {

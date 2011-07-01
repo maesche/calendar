@@ -2,6 +2,8 @@
 
 include_once("model/class/Event.php");
 include_once("model/EventHandler.php");
+require_once('lib/FirePHPCore/FirePHP.class.php');
+ob_start();
 
 class EventController {
 
@@ -14,6 +16,7 @@ class EventController {
     private $eventHandler;
 
     function __construct($room, $user) {
+
         $this->room = $room;
         $this->user = $user;
         $this->return["success"] = true;
@@ -33,7 +36,7 @@ class EventController {
         $this->timeTable = $timeTable;
     }
 
-    private function addExclusive($ignore = null) {
+    private function addExclusive() {
         /*
          * BEGIN CRITICAL PART
          *
@@ -44,28 +47,12 @@ class EventController {
         $file_handle = fopen('../tmp/calendar' . $this->room->getId() . '.lock', 'w+');
         $finish = false;
         $insertable = true;
+
         while (!$finish) {
             if (flock($file_handle, LOCK_EX)) {
                 $dates = null;
-                $ignored = null;
-                if (count($ignore) > 0) {
-                    $tmp = $this->timeTable;
-                    foreach ($ignore as $key => $value) {
-                        //echo $ignore[$key]["date"] ."adslékfjaklsédfjadlsékfjadséf</br>";
-                        $date = $ignore[$key]["date"];
-                        if (isset($tmp[$date]) && 
-                                $tmp[$date][0]["id"] == $this->event->getId()) {
 
-                            unset($tmp[$ignore[$key]["date"]]);
-                            $ignored[] = $ignore[$key]["date"];
-                        }
-                    }
-
-                    $verifiedEvents = $this->eventHandler->checkAvailability($this->room, $tmp, $this->event->getDBegin(), $this->event->getLastDate());
-                    //faire un shift avec les éléments à ignorer
-                } else {
-                    $verifiedEvents = $this->eventHandler->checkAvailability($this->room, $this->timeTable, $this->event->getDBegin(), $this->event->getLastDate());
-                }
+                $verifiedEvents = $this->eventHandler->checkAvailability($this->room, $this->timeTable, $this->event->getDBegin(), $this->event->getLastDate());
   
                 if (count($verifiedEvents["unavailable"]) > 0 && !($this->insertAvailable)) {
                     $this->return["success"] = false;
@@ -74,13 +61,6 @@ class EventController {
                     $insertable = false;
                 } else {
                     $dates = $verifiedEvents["available"];
-                    if (count($ignore) > 0) {
-                        foreach ($ignored as $date) {
-                            $dates[$date] = array(
-                                "start" => $this->event->getHBegin(),
-                                "end" => $this->event->getHEnd());
-                        }
-                    }
                 }
                 if ($insertable) {
                     $this->eventHandler->add($this->room, $this->event, $dates);
@@ -96,7 +76,8 @@ class EventController {
     }
 
     public function action($action) {
-
+    	$firephp = FirePHP::getInstance(true);
+    	$firephp->log($action, 'action');
         switch ($action) {
             case "delete-current" :
                 $this->eventHandler->delete($this->room, $this->event, true);
@@ -105,15 +86,12 @@ class EventController {
                 $this->eventHandler->delete($this->room, $this->event, true, $this->event->getDBegin());
                 break;
             case "update-current-nodate" :
-                $this->eventHandler->update($this->room, $this->event/*, true*/);
-                //$this->eventHandler->delete($this->room, $this->event, true);
+                $this->eventHandler->update($this->room, $this->event);
                 break;
             case "update-current-withdate" :
                 //create new independent event
                 //OK FONCTIONNE
-                $ignore[] = array("date" => $this->event->getDBegin());
-                $this->addExclusive($ignore);
-                //$this->addExclusive();
+                $this->addExclusive();
 
                 if ($this->return["success"]) {
                     //delete current item from recurrent lists if new inserted
@@ -141,9 +119,8 @@ class EventController {
             case "update-all-withdate" :
                 //create new independent event
                 
-                $ignore = $this->eventHandler->getSiblings($this->event);
-                $this->addExclusive($ignore);
-                //$this->addExclusive();
+                $this->addExclusive();
+
                 if ($this->return["success"]) {
                     //delete events
                     $this->eventHandler->delete($this->room, $this->event, true, $this->event->getDBegin());

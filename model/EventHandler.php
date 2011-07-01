@@ -4,8 +4,7 @@ include_once("helpers" . DIRECTORY_SEPARATOR . "ErrorHandler.php");
 include_once("model/class/Room.php");
 include_once("model/class/Event.php");
 include_once("model/class/Db.php");
-require_once('lib/FirePHPCore/FirePHP.class.php');
-ob_start();
+
 class EventHandler {
 
     /**
@@ -67,10 +66,7 @@ class EventHandler {
 
         $sql_orderby .= "ORDER BY D.begin";
 
-        $sql = $select_Event . $sql_where . $sql_orderby;
-
-
-        
+        $sql = $select_Event . $sql_where . $sql_orderby;  
 
         $return = $db->select($sql);
 
@@ -245,7 +241,6 @@ class EventHandler {
     }
 
     public function delete($room, $event, $deleteOnlyCurrent = false, $deleteAfter = null, $deleteBefore = null) {
-    	$firephp = FirePHP::getInstance(true);
         $success = true;
         $connection = null;
         $query = null;
@@ -254,15 +249,14 @@ class EventHandler {
         $sql = "DELETE FROM events WHERE event_id = '" . $event->getId() . "'";
         try {
             $db = new Db();
-            $firephp->log($deleteOnlyCurrent, 'deleteOnlyCurrent');
             $siblings = $this->getSiblings($event);
-            $firephp->log($siblings, 'siblings');
-            $lastDate = $siblings[count($siblings) - 1]["date"];
-            $firephp->log($lastDate, 'lastDate');
-            $isLastElement = $event->getDBegin() >= $lastDate && count($siblings) <= 1;
-            $firephp->log(count($siblings), 'countSiblings');
-            $firephp->log($isLast, 'isLast');
-            if ($deleteOnlyCurrent || !$isLastElement) {
+            
+            $isLast = true;
+			for ($i = 0; $i < count($siblings) && $isLast; $i++) {
+				$isLast = $event->getDBegin() <= $siblings[$i]["date"] ;
+			}
+
+            if ($deleteOnlyCurrent && !$isLast) {
                 $sql = "DELETE FROM event_dates WHERE event_date_id = '" . $event->getDateId() . "'";
 
                 if ($deleteAfter != null || $deleteBefore != null) {
@@ -276,7 +270,6 @@ class EventHandler {
                     }
                 }
             }
-            $firephp->log($sql, 'sql');
             $success = $db->delete($sql);
         } catch (Exception $e) {
             ErrorHandler::Error($e);

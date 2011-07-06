@@ -5,13 +5,13 @@
     <messages>
         <error>
             <time>時間のエラーがあります。</time>
-            <unavailable>The following dates bellow are unavailable.</unavailable>
+            <unavailable>この期間は使用できません。</unavailable>
         </error>
         <check>赤い部分の情報を確かめてください。</check>
         <repeat-info>このイベントは繰り返し指定です。すべての情報は変更されます。</repeat-info>
         <other-user>このイベントは編集ができません。アカウント主は  </other-user>
     </messages>
-    <new>イベントを作る</new>
+    <new>イベントを入力</new>
     <edit>イベントの編集</edit>
     <save>保存</save>
     <delete>消去</delete>

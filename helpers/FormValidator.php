@@ -1,7 +1,6 @@
 <?php
-require_once('lib/FirePHPCore/FirePHP.class.php');
 date_default_timezone_set('Europe/Berlin');
-ob_start();
+
 class FormValidator {
 
 	public static function email($email) {
@@ -22,8 +21,6 @@ class FormValidator {
 				$ret = false;
 			}
 		}
-
-		$firephp->log($ret, 'ret ' + $text);
 		 
 		return $ret;
 	}

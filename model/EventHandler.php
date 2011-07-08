@@ -152,13 +152,15 @@ class EventHandler {
             $mode = $event->getMode();
 
             if (isset($title)) {
-                $sql .= ", title='{$event->getTitle()}'";
+            	$title = addslashes($title);
+                $sql .= ", title='$title'";
             }
             if (isset($description)) {
-                $sql .= ", description='{$event->getDescription()}'";
+            	$description = addslashes($description);
+                $sql .= ", description='$description'";
             }
             if (isset($mode)) {
-                $sql .= ", mode='{$event->getMode()}'";
+                $sql .= ", mode='$mode'";
             }
             $sql .= " WHERE event_id='$event_id'";
 
@@ -190,6 +192,9 @@ class EventHandler {
         $success = true;
         if (count($dates) > 0) {
             $event_id = $event->getOwner() . microtime() . rand(0, 10);
+            
+            $title = addslashes($event->getTitle());
+            $description = addslashes($event->getDescription());
 
             $sql = "INSERT INTO events (event_id, room_id, owner, title, description, mode) ";
             $sql .= "VALUES ";
@@ -200,9 +205,9 @@ class EventHandler {
             $sql .= ", ";
             $sql .= "'" . $event->getOwner() . "'";
             $sql .= ", ";
-            $sql .= "'" . $event->getTitle() . "'";
+            $sql .= "'" . $title . "'";
             $sql .= ", ";
-            $sql .= "'" . $event->getDescription() . "'";
+            $sql .= "'" . $description . "'";
             $sql .= ", ";
             $sql .= "'" . $event->getMode() . "'";
             $sql .= ")";

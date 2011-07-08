@@ -17,7 +17,6 @@ function sendForm(action) {
         type: "POST",
         url: actionURL,
         data: dataString,
-        //dataType: "html",
         dataType: "json",
         success: function(msg){
 
@@ -29,8 +28,6 @@ function sendForm(action) {
                 $('#message').html(getErrors(res));
                 $('#message').css("color", "red");
             }
-        //debug
-        //$('#message').html(msg);
         }
 
     });

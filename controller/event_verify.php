@@ -24,6 +24,7 @@ $date = $_POST['edate'];
 $name = $_POST['name'];
 $start = $_POST['start_hour'] . ":" . $_POST['start_min'] . ":00";
 $end = $_POST['end_hour'] . ":" . $_POST['end_min'] . ":00";
+$description = $_POST['description'];
 
 $wholeDay = false;
 if (isset($_POST['whole_day'])) {
@@ -37,9 +38,16 @@ if (System::authLevel() > 0) {
         if (FormValidator::text($formUser, true) && $user == $formUser) {
             if ($action != "delete") {
                 if (FormValidator::date($date)) {
-                    if (FormValidator::text($name, true)) {
+                    if (strlen($name) > 0 && FormValidator::text($name, true)) {
                         if (strtotime($end) > strtotime($start) || $wholeDay == true) {
-                            $valide = true;
+                        	if (FormValidator::text($description, true)) {
+                        		$valide = true;
+                        	}
+                        	else {
+                        		$return["success"] = false;
+                        		$return["eventname"] = "eventname";
+                        	}
+                            
                         } else {
                             $return["success"] = false;
                             $return["time"] = "time";
@@ -75,7 +83,7 @@ if ($valide) {
                     $_POST['event_id'],
                     $_POST['uid'],
                     $name,
-                    $_POST['description'],
+                    $description,
                     $date,
                     $start,
                     $date,

@@ -9,9 +9,7 @@ class FormValidator {
 		return preg_match($reg, $email);
 	}
 
-	public static function text($text, $asString) {
-		$firephp = FirePHP::getInstance(true);
-		
+	public static function text($text, $asString) {	
 		$ret = true;
 		 
 		if (strlen($text) > 0) {

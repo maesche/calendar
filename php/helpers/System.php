@@ -7,6 +7,7 @@
  */
 class System {
 
+	
     public static function authLevel() {
 
         $authLevel = 0;

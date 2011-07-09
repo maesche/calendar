@@ -14,10 +14,9 @@ session_start();
 /* Toutes les réponses sont envoyées en UTF-8 */
 header('Content-type: text/html; charset=UTF-8');
 
-/* Si la session n'a pas encore été configurée, config/init.php sera chargé */
-
 include 'config/init.php';
-
+require_once('php/application/BootLoader.php');
+BootLoader::init();
 
 require("views/main.php");
 ?>

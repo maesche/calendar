@@ -4,12 +4,12 @@
  */
 
 function sendForm(action) {
-    actionURL = "controller/event_verify.php";
+    actionURL = "php/controller/event_verify.php";
     if (action == 'delete') {
         $("#action").val("delete");
     }
     else if(action == 'insert-available') {
-        actionURL = "controller/event_verify.php?insert-available=true";
+        actionURL = "php/controller/event_verify.php?insert-available=true";
     }
 
     dataString = $('form').serialize();
@@ -98,7 +98,7 @@ $(document).ready(function() {
     init();
     $('.psf').click(function() {
         var $dialog = $('<div id=\"dialog\"></div>')
-        .load('./views/eventdialog.php?mode=' + eventMode + '&posX=' + eventPosX + "&posY=" + eventPosY)
+        .load('./php/views/eventdialog.php?mode=' + eventMode + '&posX=' + eventPosX + "&posY=" + eventPosY)
         .dialog({
             title: dialogTitle,
             autoOpen: false,

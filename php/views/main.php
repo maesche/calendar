@@ -7,6 +7,8 @@
 
  *
  */
+require_once('php/application/GlobalRegistry.php');
+require_once('php/application/LanguageLinker.php');
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
@@ -42,6 +44,13 @@
         <link rel="shortcut icon" href="https://wwwfbm.unil.ch/favicon.ico" type="image/x-icon" />
     </head>
     <body>
+    <?php 
+    $globalRegistry = $_SESSION["GlobalRegistry"];
+    
+    
+    $languageLinker = $globalRegistry->languageLinker;
+    echo $languageLinker->resourceBundle->get("applicationErrorSystem");
+    ?>
         <div id="main">
             <span style="color:red; font-weight: bold">Version de développement</span>
             <table border="0" cellpadding="0" cellspacing="0" width="1240"

@@ -155,7 +155,7 @@ function buildings() {
         building = $.cookie("building");
     }
 
-    $.get("views/buildings.php", {
+    $.get("php/views/buildings.php", {
         "id": building
     },
     function(data){
@@ -176,7 +176,7 @@ function calendar() {
     if ($.cookie("month") != null) {
         month = $.cookie("month");
     }
-    $.get("views/calendar.php", {
+    $.get("php/views/calendar.php", {
         "view": view,
         "room": room,
         "year" : year,

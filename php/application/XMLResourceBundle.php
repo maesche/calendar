@@ -37,16 +37,16 @@ class XMLResourceBoundle{
      * @param string $filename
      * @param string $languageCode, the default is ""
      */
-	function XMLResourceBoundle($filename, $languageCode=""){
+	function XMLResourceBoundle($path, $filename, $languageCode=""){
 		$complete_path="";
 		
 		$this->doc = new DomDocument();
 		$this->doc->preserveWhiteSpace = false;
 		
 		if ($languageCode!=""){
-			$complete_path=$languageCode."/".$filename;
+			$complete_path=$path . "/" . $languageCode."/".$filename;
 		}else{
-			$complete_path=$filename;
+			$complete_path=$path . "/" . $filename;
 		}
 		$this->doc->load($complete_path);
 		$this->xpath = new DOMXPath($this->doc);

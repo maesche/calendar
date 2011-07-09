@@ -1,7 +1,11 @@
 <?php
-require_once('XMLResourceBundle.php');
+session_start();
+require_once('php/application/XMLResourceBundle.php');
+require_once('php/application/GlobalRegistry.php');
+require_once('php/application/BootLoader.php');
+require_once('php/application/LanguageLinker.php');
 
-$resourceBundle = new XMLResourceBoundle("test.xml", "de");
+$resourceBundle = new XMLResourceBoundle("xml/lang", "lang.xml", "fr");
 
 
 ?>
@@ -19,6 +23,12 @@ $resourceBundle = new XMLResourceBoundle("test.xml", "de");
 
     </head>
     <body>
-    <?php echo $resourceBundle->get("applicationMenuAbout");?>
+    <?php echo $resourceBundle->get("applicationErrorSystem");?>
+    <?php BootLoader::init();
+    $globalRegistry = $_SESSION["GlobalRegistry"];
+
+    $languageLinker = $globalRegistry->languageLinker;
+    echo $languageLinker->getLang();
+    ?>
     </body>
  </html>

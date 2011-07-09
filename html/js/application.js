@@ -95,7 +95,13 @@ function appUI() {
     $('.language').css('font-weight', 'normal');
     $('#' + lang).css('font-weight', 'bold');
 
-
+    $.ajax({
+        type: "GET",
+        url: "php/controller/ApplicationController?lang=" + lang,
+        dataType: "xml",
+        success: function(xml) {
+        }
+    });
 
     $.ajax({
         type: "GET",

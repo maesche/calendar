@@ -1,4 +1,5 @@
 <?php
+require_once('application/SerializableDomDocument.php');
 
 /**
  * 
@@ -37,10 +38,10 @@ class XMLResourceBoundle{
      * @param string $filename
      * @param string $languageCode, the default is ""
      */
-	function XMLResourceBoundle($path, $filename, $languageCode=""){
+	public function XMLResourceBoundle($path, $filename, $languageCode=""){
 		$complete_path="";
 		
-		$this->doc = new DomDocument();
+		$this->doc = new SerializableDomDocument();
 		$this->doc->preserveWhiteSpace = false;
 		
 		if ($languageCode!=""){
@@ -49,19 +50,20 @@ class XMLResourceBoundle{
 			$complete_path=$path . "/" . $filename;
 		}
 		$this->doc->load($complete_path);
-		$this->xpath = new DOMXPath($this->doc);
 	}
 	
 	/**
      * Constructor sets up the source file xml to read, and the language from where read.
-     * The structure bust be: ${path}/${language}/{$filename}
+     * The structure must be: ${path}/${language}/{$filename}
      * @param string the id of the key to get
      * @return string the value of the key in the xml node, if the key is not found, 
      * return the key with ??? before and after. 
      */
-	function get($keyId){
+	public function get($keyId){
 		$query = "//entry[@key='".$keyId."']";
-		$entries = $this->xpath->evaluate($query, $this->doc);
+
+		$xpath = new DOMXPath($this->doc);
+		$entries = $xpath->evaluate($query);
 		
 		if ($entries->item(0)->nodeValue!=""){
 			return($entries->item(0)->nodeValue);

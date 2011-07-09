@@ -45,11 +45,11 @@ require_once('php/application/LanguageLinker.php');
     </head>
     <body>
     <?php 
-    $globalRegistry = $_SESSION["GlobalRegistry"];
+    /*$globalRegistry = $_SESSION["GlobalRegistry"];
     
     
     $languageLinker = $globalRegistry->languageLinker;
-    echo $languageLinker->resourceBundle->get("applicationErrorSystem");
+    echo $languageLinker->resourceBundle->get("room-category-other");*/
     ?>
         <div id="main">
             <span style="color:red; font-weight: bold">Version de développement</span>

@@ -1,8 +1,15 @@
 <?php
+require_once('application/GlobalRegistry.php');
+require_once('application/LanguageLinker.php');
 include_once("model/class/Building.php");
 include_once("model/BuildingHandler.php");
 include_once("model/RoomHandler.php");
+
 session_start();
+
+$globalRegistry = $_SESSION["GlobalRegistry"];
+$languageLinker = $globalRegistry->languageLinker;
+
 
 $rooms = null;
 $buildings = null;
@@ -87,7 +94,9 @@ $rooms = $roomHandler->getRooms($currentBuilding);
         
 
         foreach ($room_sorted as $key => $value) {
-            echo "<optgroup label=\"$key\">"; 
+        	$catgoryText =  $languageLinker->resourceBundle->get("room-category-". $key);
+        	
+            echo "<optgroup label=\"$catgoryText\">"; 
             foreach($value as $r) {
                 echo "<option value=\"{$r["id"]}\">{$r["local"]} - {$r["name"]}</option>";
             //echo "<option value=\"{$r->getId()}\">{$r->getLocal()} - {$r->getName()} - {$r->getCategory()}</option>";

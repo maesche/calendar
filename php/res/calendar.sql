@@ -15,17 +15,31 @@ DROP DATABASE IF EXISTS calendar;
 CREATE DATABASE calendar DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_unicode_ci;
 USE calendar;
 
+DROP TABLE IF EXISTS sites;
+CREATE TABLE IF NOT EXISTS sites (
+  site_id INTEGER(9) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL,
+  PRIMARY KEY (site_id)
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO sites VALUES 
+(1, 'Dorigny'), 
+(2, 'Bugnon'),
+(3, 'Epalinges');
 
 DROP TABLE IF EXISTS buildings;
 CREATE TABLE IF NOT EXISTS buildings (
   building_id INTEGER(9) NOT NULL AUTO_INCREMENT,
+  site_id INTEGER(9) NOT NULL,
   name VARCHAR(30) NOT NULL,
-  PRIMARY KEY (building_id)
+  PRIMARY KEY (building_id),
+    FOREIGN KEY (site_id) REFERENCES sites(site_id)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO buildings VALUES (7, 'BU 7');
-INSERT INTO buildings VALUES (71, 'BU 7A');
-INSERT INTO buildings VALUES (27, 'BU 27');
+INSERT INTO buildings VALUES 
+(7, 2, '7'),
+(71, 2, '7A'),
+(27, 2, '27');
 
 DROP TABLE IF EXISTS room_categories;
 CREATE TABLE IF NOT EXISTS room_categories (
@@ -35,14 +49,14 @@ CREATE TABLE IF NOT EXISTS room_categories (
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `room_categories` (`room_category_id`, `name`) VALUES
-(1, 'Autre'),
-(2, 'Appareils de mesure scientifique'),
-(3, 'Salles'),
-(4, 'Laboratoire d''expérimentation animale'),
-(5, 'Laboratoires sécurisés P2'),
-(6, 'Microscopes . chambre noire'),
-(7, 'Salle des appareils'),
-(8, 'Matériel de prêt');
+(1, 'other'),
+(2, 'setup'),
+(3, 'room'),
+(4, 'animalLab'),
+(5, 'p2'),
+(6, 'microscope'),
+(7, 'machine'),
+(8, 'rent');
 
 DROP TABLE IF EXISTS rooms;
 CREATE TABLE IF NOT EXISTS rooms (

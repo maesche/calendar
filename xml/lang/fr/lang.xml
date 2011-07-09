@@ -2,10 +2,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"> 
 
 <properties>  
-	<comment>This is a Java Property file (de language)</comment>  
+	<comment>This is a Langugae Property file</comment>  
 	<entry key="applicationErrorSystem">Folgender Fehler ist aufgetreten.</entry>  
-
-	
+	<entry key="room-category-other">Autre</entry>
+	<entry key="room-category-setup">Appareils de mesure scientifique</entry> 
+	<entry key="room-category-room">Salles</entry> 
+	<entry key="room-category-animalLab">Laboratoire d'expérimentation animale</entry> 
+	<entry key="room-category-animalFacility">Animalerie</entry> 
+	<entry key="room-category-p2">Laboratoires sécurisés P2</entry> 
+	<entry key="room-category-microscope">Microscope</entry> 
+	<entry key="room-category-machine">Salle des appareils</entry> 
+	<entry key="room-category-rent">Matériel de prêt</entry> 
 	
 	<entry key="dayOfWeek1">Sonntag</entry>
 	<entry key="dayOfWeek2">Montag</entry>

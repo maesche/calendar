@@ -38,16 +38,16 @@ class XMLResourceBoundle{
      * @param string $filename
      * @param string $languageCode, the default is ""
      */
-	public function XMLResourceBoundle($path, $filename, $languageCode=""){
+	public function XMLResourceBoundle($path, $languageCode=""){
 		$complete_path="";
 		
 		$this->doc = new SerializableDomDocument();
 		$this->doc->preserveWhiteSpace = false;
 		
 		if ($languageCode!=""){
-			$complete_path=$path . "/" . $languageCode."/".$filename;
+			$complete_path=$path . "/lang_" . $languageCode. ".xml";
 		}else{
-			$complete_path=$path . "/" . $filename;
+			$complete_path=$path . "/lang.xml";
 		}
 		$this->doc->load($complete_path);
 	}

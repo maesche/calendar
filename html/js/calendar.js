@@ -42,7 +42,7 @@ function getErrors(errors) {
             case 'unavailable' :
                 i = 0;
                 error = "";
-                error += errormsg['unavailable'];
+                error += resourceBundle["calendar-error-unavailable"];
                 error += "<ul>";
                 $.each(val, function(key, val) {
                     start =  val["start"].substring(0,5);
@@ -57,33 +57,30 @@ function getErrors(errors) {
                     alerteIndisponibilite();
                 }
                 else {
-                    errorMessage += errormsg['unavailable'];
-                //errorMessage += error;
+                    errorMessage += resourceBundle["calendar-error-unavailable"];
                 }
                 break;
             case 'time' :
-                errorMessage += errormsg['time'];
-                
-                
+                errorMessage += resourceBundle["calendar-error-time"];
                 break;
             case 'auth' :
-                errorMessage += "You don't have access to this page";
+                errorMessage += resourceBundle["calendar-error-access"];
                 break;
             case 'room' :
-                errorMessage += "No room specified.";
+                errorMessage += resourceBundle["calendar-error-room"];
                 break;
             case 'action' :
-                errorMessage += "This action doesn't exist (add, edit, delete)";
+                errorMessage += resourceBundle["calendar-error-action"];
                 break;
             case 'eventname' :
-                errorMessage += "Event name invalid";
+                errorMessage += resourceBundle["calendar-error-invalid"];
                 break;
             case 'dateformat' :
-                errorMessage += "Not a valid date format";
+                errorMessage += resourceBundle["calendar-error-dateFormat"];
                 break;
             default :
                 if (key != "success") {
-                    errorMessage += "System error: " + key + " " + val;
+                    errorMessage += resourceBundle["calendar-error-system"] + key + " " + val;
                 }
                 break;
         }
@@ -112,7 +109,7 @@ $(document).ready(function() {
         $("#eventform :input").each(function() {
             if($(this).val() == '' && $(this).hasClass('required') ){
                 $(this).prev().css("color", "red");
-                $('#message').html(checkmsg);
+                $('#message').html("<span style=\"color:red\">" +resourceBundle["calendar-message-check"] + "</span>");
                 errors++;
             } else {
                 $(this).prev().css("color", "black");

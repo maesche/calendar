@@ -1,7 +1,6 @@
 <?php
-require_once('lib/FirePHPCore/FirePHP.class.php');
 date_default_timezone_set('Europe/Berlin');
-ob_start();
+
 class FormValidator {
 
 	public static function email($email) {
@@ -10,9 +9,7 @@ class FormValidator {
 		return preg_match($reg, $email);
 	}
 
-	public static function text($text, $asString) {
-		$firephp = FirePHP::getInstance(true);
-		
+	public static function text($text, $asString) {		
 		$ret = true;
 		 
 		if (strlen($text) > 0) {
@@ -21,10 +18,7 @@ class FormValidator {
 			if($actual_length != $stripped_length) {
 				$ret = false;
 			}
-		}
-
-		$firephp->log($ret, 'ret ' + $text);
-		 
+		}		 
 		return $ret;
 	}
 

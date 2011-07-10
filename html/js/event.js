@@ -1,6 +1,8 @@
-/*
- *  Auteur:     Stefan Meier
- *  Version:    2010.11.07
+/**
+ * @author:     Stefan Meier
+ * @version:    20110710
+ * 
+ * This script is a listener for all eventdialog events
  */
 
 function disableForm() {
@@ -104,62 +106,7 @@ function repeatSelector() {
     }
 }
 
-function eventUI(lang) {
-   /* $.ajax({
-        type: "GET",
-        url: "xml/lang/" + lang + "/event.xml",
-        dataType: "xml",
-        success: function(xml) {
-
-            var event = $('event', xml);
-
-            $('.dialog-title').html(event.children($('.dialog-title').attr('id')).text());
-
-            /*$('#event-user').html(event.children('user').text());
-            $('#event-title').html(event.children('title').text());
-            $('#event-date').html(event.children('date').text());
-            $('#event-whole-day').html(event.children('whole-day').text());
-            $('#event-start').html(event.children('start').text());
-            $('#event-end').html(event.children('end').text());
-
-            var repeat = event.children('repeat');
-
-            $('#event-repeat').html(repeat.children('title').text());
-            $('#repeat-n').html(repeat.children('never').text());
-            $('#repeat-d').html(repeat.children('daily').text());
-            $('#repeat-w').html(repeat.children('weekly').text());
-            $('#repeat-2w').html(repeat.children('half-monthly').text());
-            $('#repeat-m').html(repeat.children('monthly').text());
-            $('#repeat-y').html(repeat.children('yearly').text());
-            $('#repeat-until').html(repeat.children('until').text());
-
-
-            $('#event-description').html(event.children('description').text());
-
-
-            $('#save').html('<span class=\"ui-button-text\">' + event.children('save').text() + '</span>');
-            $('#delete').html('<span class=\"ui-button-text\">' + event.children('delete').text() + '</span>');
-            $('#cancel').html('<span class=\"ui-button-text\">' + event.children('cancel').text() + '</span>');
-
-
-            var messages = event.children('messages');
-
-            $('#message-repeat').html(messages.children('repeat-info').text());
-            $('#message-other-user').html(messages.children('other-user').text());
-
-            var errors = messages.children('error');
-
-            errormsg['time'] = errors.children('time').text();
-            errormsg['unavailable'] = errors.children('unavailable').text();
-            checkmsg = '<span style=\"color:red\">' + messages.children('check').text() + '</span>';
-        }
-    });*/
-}
-
 $(document).ready(function() {
-
-    //eventUI(lang);
-
     $('#name').focus();
 
     if ($("#edate").val() == '') {

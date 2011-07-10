@@ -14,8 +14,6 @@ var eventMode = 'add';
 var eventPosX;
 var eventPosY;
 var eventSalle;
-var errormsg = new Array();
-var checkmsg = "";
 var month = new Date().getMonth() + 1;
 var year = new Date().getFullYear();
 var room = 13;
@@ -72,13 +70,13 @@ function init() {
 }
 
 function newEvent(caldate) {
-    this.dialogTitle = '<span class=\"dialog-title\" id=\"new\"></span>';
+    this.dialogTitle = "<span class=\"dialog-title\" id=\"new\">" + resourceBundle["calendar-event-new"] + "</span>";
     this.eventMode = 'add';
     this.caldate = caldate;
 }
 
 function editEvent(posX, posY, caldate) {
-    this.dialogTitle = '<span class=\"dialog-title\" id=\"edit\"></span>';
+    this.dialogTitle = "<span class=\"dialog-title\" id=\"edit\">" + resourceBundle["calendar-event-edit"] + "</span>";
     this.eventMode = 'edit';
     this.eventPosX = posX;
     this.eventPosY = posY;

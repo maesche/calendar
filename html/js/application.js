@@ -94,36 +94,35 @@ function appUI() {
     $('.language').css('font-weight', 'normal');
     $('#' + lang).css('font-weight', 'bold');
 
-
-    
     $.ajax({
         type: "GET",
         url: "php/controller/ApplicationController?lang=" + lang,
+        success: function(msg) {
+        	 $.ajax({
+        	 	   type: "GET",
+        	 	   url: "html/js/lang.php",
+        	 	   dataType: "script",
+        	 	  success: function(msg){
+        	 		$('#page-title').html(resourceBundle["application-title"]);
+
+        	 	    $('#information-title').html(resourceBundle["calendar-information"]);
+        	 	    $('#calendar-choice').html(resourceBundle["calendar-choice"]);
+        	 	    $('#go-to').html(resourceBundle["calendar-goTo"]);
+        	 	    
+
+        	       $('#month').html('');
+        	       for (i = 1; i <= 12; i++) {
+
+        	           $('#month').append('<option value=\"' + i + '\">' + resourceBundle["month-" + i + "-full"] + '</option>');
+        	       }
+
+        	       buildings();
+        	       calendar();
+        	 	    
+        	 	  }
+        	 	 });
+        }
     });
-    
-    $.ajax({
- 	   type: "GET",
- 	   url: "html/js/lang.php",
- 	   dataType: "script",
- 	  success: function(msg){
- 		$('#page-title').html(resourceBundle["application-title"]);
-
- 	    $('#information-title').html(resourceBundle["calendar-information"]);
- 	    $('#calendar-choice').html(resourceBundle["calendar-choice"]);
- 	    $('#go-to').html(resourceBundle["calendar-goTo"]);
- 	    
-
-       $('#month').html('');
-       for (i = 1; i <= 12; i++) {
-
-           $('#month').append('<option value=\"' + i + '\">' + resourceBundle["month-" + i + "-full"] + '</option>');
-       }
-
-       buildings();
-       calendar();
- 	    
- 	  }
- 	 });
 }
 
 function buildings() {
@@ -167,9 +166,9 @@ function calendar() {
         $('#cal_roomName').remove();
         $('#cal_roomDescription').remove();
 
-        for (i = 0; i < 7; i++) {
+        for (i = 1; i <= 7; i++) {
 
-            $("#day" + (i+1)).html(dayNames[i]);
+            $("#day" + i).html(resourceBundle["day-" + i + "full"]);
         }
 
     });

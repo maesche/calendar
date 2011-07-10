@@ -1,8 +1,9 @@
-/*
- *  Auteur:     Stefan Meier
- *  Version:    20110417
+/**
+ * @author:     Stefan Meier
+ * @version:    20110710
+ * 
+ * This script is a listener for all calendar events
  */
-
 function sendForm(action) {
     actionURL = "php/controller/event_verify.php";
     if (action == 'delete') {
@@ -94,8 +95,59 @@ function getErrors(errors) {
 
 //Initialisation de JQuery
 $(document).ready(function() {
+
     setTimeout('sessionTimeout()', 3600001);
     init();
+    var buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-event-cancel"]] = $.extend(function() {
+        $(this).dialog("close");
+    },{
+        id : 'cancel'
+    });
+    buttonsOpts[resourceBundle["calendar-event-save"]] = $.extend(function() {
+
+        var errors = 0;
+
+
+        $("#eventform :input").each(function() {
+            if($(this).val() == '' && $(this).hasClass('required') ){
+                $(this).prev().css("color", "red");
+                $('#message').html(checkmsg);
+                errors++;
+            } else {
+                $(this).prev().css("color", "black");
+            }
+        });
+
+        if (errors == 0){
+            
+            if($('#original_repeat_mode').val() != 'n' && $('#original_repeat_mode').val() != "" && $('#action').val() == "edit") {
+                updateConfirm();
+            }
+            else {
+                sendForm('edit');
+            }
+        //sendForm('');
+            
+            
+        }
+    },{
+        id : 'save'
+    });
+    buttonsOpts[resourceBundle["calendar-event-delete"]] = $.extend(function() {                    
+        if($('#original_repeat_mode').val() != 'n' && $('#original_repeat_mode').val() != "") {
+            confirmChanges('delete');
+        /*if($("#modifyall").val() != "" && $("#modifyall").val() != null) {
+                sendForm('delete');
+            }*/
+        }
+        else {
+            sendForm('delete');
+        }
+    }, {
+        id : 'delete'
+    });   
+    
     $('.psf').click(function() {
         var $dialog = $('<div id=\"dialog\"></div>')
         .load('./php/views/eventdialog.php?mode=' + eventMode + '&posX=' + eventPosX + "&posY=" + eventPosY)
@@ -103,56 +155,7 @@ $(document).ready(function() {
             title: dialogTitle,
             autoOpen: false,
             width: 280,
-            buttons: {
-                "Annuler": $.extend(function() {
-                    $(this).dialog("close");
-                },{
-                    id : 'cancel'
-                }),
-                "Sauvegarder": $.extend(function() {
-
-                    var errors = 0;
-
-
-                    $("#eventform :input").each(function() {
-                        if($(this).val() == '' && $(this).hasClass('required') ){
-                            $(this).prev().css("color", "red");
-                            $('#message').html(checkmsg);
-                            errors++;
-                        } else {
-                            $(this).prev().css("color", "black");
-                        }
-                    });
-
-                    if (errors == 0){
-                        
-                        if($('#original_repeat_mode').val() != 'n' && $('#original_repeat_mode').val() != "" && $('#action').val() == "edit") {
-                            updateConfirm();
-                        }
-                        else {
-                            sendForm('edit');
-                        }
-                    //sendForm('');
-                        
-                        
-                    }
-                },{
-                    id : 'save'
-                }),
-                "Supprimer" : $.extend(function() {                    
-                    if($('#original_repeat_mode').val() != 'n' && $('#original_repeat_mode').val() != "") {
-                        confirmChanges('delete');
-                    /*if($("#modifyall").val() != "" && $("#modifyall").val() != null) {
-                            sendForm('delete');
-                        }*/
-                    }
-                    else {
-                        sendForm('delete');
-                    }
-                }, {
-                    id : 'delete'
-                })
-            },
+            buttons: buttonsOpts,
             close: function(ev, ui) {
                 calendar();
                 $(this).remove();

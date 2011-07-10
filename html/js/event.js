@@ -30,7 +30,7 @@ function wholeDay() {
 }
 
 function updateConfirm() {
-   // $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes les réservations futures?</p>");
+	$("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>" + resourceBundle["calendar-message-confirm-repeat-update"] + "</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
@@ -51,7 +51,7 @@ function updateConfirm() {
 }
 
 function confirmChanges(action) {
-    //$("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous supprimer cet événement y compris toutes ses réservations futures ou uniquement la réservation sélectionnée?</p>");
+    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>" + resourceBundle["calendar-message-confirm-repeat-update"] + "</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
@@ -158,7 +158,7 @@ function eventUI(lang) {
 
 $(document).ready(function() {
 
-    eventUI(lang);
+    //eventUI(lang);
 
     $('#name').focus();
 

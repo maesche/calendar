@@ -3,7 +3,52 @@
 
 <properties>  
 	<comment>This is a Langugae Property file</comment>  
-	<entry key="applicationErrorSystem">Folgender Fehler ist aufgetreten.</entry>  
+	<entry key="month-1-full">Janvier</entry>  
+	<entry key="month-2-full">Février</entry> 
+	<entry key="month-3-full">Mars</entry> 
+	<entry key="month-4-full">Avril</entry> 
+	<entry key="month-5-full">Mai</entry> 
+	<entry key="month-6-full">Juin</entry> 
+	<entry key="month-7-full">Juillet</entry> 
+	<entry key="month-8-full">Août</entry> 
+	<entry key="month-9-full">Septembre</entry> 
+	<entry key="month-10-full">Octobre</entry> 
+	<entry key="month-11-full">Novembre</entry> 
+	<entry key="month-12-full">Decembre</entry> 
+	
+	<entry key="month-1-short">Jan</entry>  
+	<entry key="month-2-short">Fév</entry> 
+	<entry key="month-3-short">Mar</entry> 
+	<entry key="month-4-short">Avr</entry> 
+	<entry key="month-5-short">Mai</entry> 
+	<entry key="month-6-short">Juin</entry> 
+	<entry key="month-7-short">Juil</entry> 
+	<entry key="month-8-short">Août</entry> 
+	<entry key="month-9-short">Sept</entry> 
+	<entry key="month-10-short">Oct</entry> 
+	<entry key="month-11-short">Nov</entry> 
+	<entry key="month-12-short">Déc</entry> 
+	
+	<entry key="day-1-full">Dimanche</entry>
+	<entry key="day-2-full">Lundi</entry>
+	<entry key="day-3-full">Mardi</entry>
+	<entry key="day-4-full">Mercredi</entry>
+	<entry key="day-5-full">Jeudi</entry>
+	<entry key="day-6-full">Vendredi</entry>
+	<entry key="day-7-full">Samedi</entry>	
+	
+	<entry key="day-1-full">Dim</entry>
+	<entry key="day-2-full">Lun</entry>
+	<entry key="day-3-full">Mar</entry>
+	<entry key="day-4-full">Mer</entry>
+	<entry key="day-5-full">Jeu</entry>
+	<entry key="day-6-full">Ven</entry>
+	<entry key="day-7-full">Sam</entry>	
+	
+	<entry key="calendar-information">Information</entry>
+	<entry key="calendar-choice">Choisir</entry>  
+	<entry key="calendar-goTo">Aller à</entry> 
+	
 	<entry key="room-category-other">Autre</entry>
 	<entry key="room-category-setup">Appareils de mesure scientifique</entry> 
 	<entry key="room-category-room">Salles</entry> 
@@ -13,12 +58,36 @@
 	<entry key="room-category-microscope">Microscope</entry> 
 	<entry key="room-category-machine">Salle des appareils</entry> 
 	<entry key="room-category-rent">Matériel de prêt</entry> 
+	 
+	<entry key="calendar-error-time">L'heure de fin doit être supérieure à l'heure de début.</entry> 
+	<entry key="calendar-error-unavailable">Les dates suivantes sont indisponibles.</entry> 
+	<entry key="calendar-error-user">Cet événement ne peut pas être modifié car il appartient à un autre utilisateur.</entry> 
 	
-	<entry key="dayOfWeek1">Sonntag</entry>
-	<entry key="dayOfWeek2">Montag</entry>
-	<entry key="dayOfWeek3">Dienstag</entry>
-	<entry key="dayOfWeek4">Mittwoch</entry>
-	<entry key="dayOfWeek5">Donnerstag</entry>
-	<entry key="dayOfWeek6">Freitag</entry>
-	<entry key="dayOfWeek7">Samstag</entry>	
-</properties> 
+	<entry key="calendar-message-check">Veuillez corriger les champs en rouge.</entry> 
+	<entry key="calendar-message-repeatInfo">Cet événement est répétitif. Toutes les dates seront modifiées.</entry> 
+	<entry key="calendar-message-confirm-repeat-update">Voulez-vous modifier uniquement cet événement ou bien cette occurrence de l’événement et toutes les suivantes ?</entry>
+	<entry key="calendar-message-confirm-title">Demande de confirmation</entry>
+	<entry key="calendar-message-confirm-repeat-delete">Souhaitez-vous supprimer cet événement ainsi que toutes ses occurrences futures ou uniquement celle sélectionnée ?</entry> 	
+
+	<entry key="calendar-event-owner">Propriétaire</entry> 
+	<entry key="calendar-event-new">Nouveau</entry> 
+	<entry key="calendar-event-edit">Editer</entry> 
+	<entry key="calendar-event-save">Sauvegarder</entry> 
+	<entry key="calendar-event-delete">Supprimer</entry> 
+	<entry key="calendar-event-cancel">Annuler</entry>
+	<entry key="calendar-event-user">Utilisateur</entry>
+	<entry key="calendar-event-title">Titre</entry>
+	<entry key="calendar-event-date">Date</entry>
+	<entry key="calendar-event-wholeDay">Jour entier</entry>
+	<entry key="calendar-event-start">Début</entry>
+	<entry key="calendar-event-end">Fin</entry>	
+	<entry key="calendar-event-repeat">Répéter</entry>	
+	<entry key="calendar-event-never">Jamais</entry>	
+	<entry key="calendar-event-daily">Chaque jour</entry>	
+	<entry key="calendar-event-weekly">Chaque semaine</entry>	
+	<entry key="calendar-event-halfMonthly">Toutes les deux semaines</entry>	
+	<entry key="calendar-event-monthly">Chaque mois</entry>	
+	<entry key="calendar-event-yearly">Chaque année</entry>	
+	<entry key="calendar-event-until">Jusqu'à</entry>	
+	<entry key="calendar-event-description">Description</entry>
+</properties> 	

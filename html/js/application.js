@@ -5,7 +5,7 @@
 // Initialisation des variables
 
 var lang = 'en';
-
+var resourceBundle = new Array();
 var dialogTitle = '';
 var caldate = '';
 var view = '';
@@ -88,6 +88,7 @@ function editEvent(posX, posY, caldate) {
 }
 
 function appUI() {
+
     if ($.cookie("lang") != null) {
         this.lang = $.cookie("lang");
     }
@@ -95,20 +96,24 @@ function appUI() {
     $('.language').css('font-weight', 'normal');
     $('#' + lang).css('font-weight', 'bold');
 
+
+    
     $.ajax({
         type: "GET",
         url: "php/controller/ApplicationController?lang=" + lang,
-        dataType: "xml",
-        success: function(xml) {
-        }
     });
-
+    
+    $.ajax({
+ 	   type: "GET",
+ 	   url: "html/js/lang.php",
+ 	   dataType: "script"
+ 	 });
+    
     $.ajax({
         type: "GET",
         url: "xml/lang/" + lang + "/application.xml",
         dataType: "xml",
         success: function(xml) {
-
             var application = $('application', xml);
 
             //$('#page-title').html($('application>title', xml).text());

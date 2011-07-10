@@ -18,8 +18,6 @@ class LanguageLinker {
 	}
 	
 	private function loadBundle() {
-		$path = get_include_path();
-		echo $path;
 		$this->resourceBundle = new XMLResourceBoundle("/Volumes/FILES/smeier/Sites/calendar/xml/lang", "lang.xml", $this->lang);
 	}
 }

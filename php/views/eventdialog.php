@@ -252,13 +252,7 @@ if (!$disable) {
     </div>
 </form>
 
-<div id="dialog-confirm-repeat" title="Confirmation">
-<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>
-<?php echo $languageLinker->resourceBundle->get("calendar-message-confirm-repeat-update");?>
-</p>
-</div>
-<div id="dialog-alerte-indisponibilite" title="Plages horaires indisponibles">
-<?php echo $languageLinker->resourceBundle->get("calendar-message-confirm-repeat-delete");?>
-</div>
+<div id="dialog-confirm-repeat" title="Confirmation"></div>
+<div id="dialog-alerte-indisponibilite" title="Plages horaires indisponibles"></div>
 
 <!-- END NEW EVENT DIALOG -->

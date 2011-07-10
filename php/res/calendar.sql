@@ -39,7 +39,9 @@ CREATE TABLE IF NOT EXISTS buildings (
 INSERT INTO buildings VALUES 
 (7, 2, '7'),
 (71, 2, '7A'),
-(27, 2, '27');
+(27, 2, '27'),
+(21, 2, '21'),
+(1, 3, 'Biopôle 3');
 
 DROP TABLE IF EXISTS room_categories;
 CREATE TABLE IF NOT EXISTS room_categories (

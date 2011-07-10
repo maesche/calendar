@@ -205,11 +205,12 @@ function browserLang() {
 
 //Initialisation de JQuery
 $(document).ready(function() {
-  
-    if (browserLang() != null && browserLang() != 'undefined' && browserLang() != "") {
-        lang = browserLang();
-        $.cookie("lang", lang);
-    }
+	if ($.cookie("lang") == null) {
+	    if (browserLang() != null && browserLang() != 'undefined' && browserLang() != "") {
+	        lang = browserLang();
+	        $.cookie("lang", lang);
+	    }
+	}
     //$.cookie("lang", lang);
     appUI();
 

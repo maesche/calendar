@@ -3,31 +3,31 @@
 
 <properties>  
 	<comment>This is a Langugae Property file</comment>  
-	<entry key="month-1-full">１　月</entry>  
-	<entry key="month-2-full">２　月</entry> 
-	<entry key="month-3-full">３　月</entry> 
-	<entry key="month-4-full">４　月</entry> 
-	<entry key="month-5-full">５　月</entry> 
-	<entry key="month-6-full">６　月</entry> 
-	<entry key="month-7-full">７　月</entry> 
-	<entry key="month-8-full">８　月</entry> 
-	<entry key="month-9-full">９　月</entry> 
-	<entry key="month-10-full">１０　月</entry> 
-	<entry key="month-11-full">１１　月</entry> 
-	<entry key="month-12-full">１２　月</entry> 
+	<entry key="month-1-full">１月</entry>  
+	<entry key="month-2-full">２月</entry> 
+	<entry key="month-3-full">３月</entry> 
+	<entry key="month-4-full">４月</entry> 
+	<entry key="month-5-full">５月</entry> 
+	<entry key="month-6-full">６月</entry> 
+	<entry key="month-7-full">７月</entry> 
+	<entry key="month-8-full">８月</entry> 
+	<entry key="month-9-full">９月</entry> 
+	<entry key="month-10-full">１０月</entry> 
+	<entry key="month-11-full">１１月</entry> 
+	<entry key="month-12-full">１２月</entry> 
 	
-	<entry key="month-1-short">１　月</entry>  
-	<entry key="month-2-short">２　月</entry> 
-	<entry key="month-3-short">３　月</entry> 
-	<entry key="month-4-short">４　月</entry> 
-	<entry key="month-5-short">５　月</entry> 
-	<entry key="month-6-short">６　月</entry> 
-	<entry key="month-7-short">７　月</entry> 
-	<entry key="month-8-short">８　月</entry> 
-	<entry key="month-9-short">９　月</entry> 
-	<entry key="month-10-short">１０　月</entry> 
-	<entry key="month-11-short">１１　月</entry> 
-	<entry key="month-12-short">１２　月</entry> 
+	<entry key="month-1-short">１月</entry>  
+	<entry key="month-2-short">２月</entry> 
+	<entry key="month-3-short">３月</entry> 
+	<entry key="month-4-short">４月</entry> 
+	<entry key="month-5-short">５月</entry> 
+	<entry key="month-6-short">６月</entry> 
+	<entry key="month-7-short">７月</entry> 
+	<entry key="month-8-short">８月</entry> 
+	<entry key="month-9-short">９月</entry> 
+	<entry key="month-10-short">１０月</entry> 
+	<entry key="month-11-short">１１月</entry> 
+	<entry key="month-12-short">１２月</entry> 
 	
 	<entry key="day-1-full">日曜日</entry>
 	<entry key="day-2-full">月曜日</entry>

@@ -15,7 +15,7 @@ class BuildingHandler {
                     s.name AS s_name
                 FROM buildings b, sites s 
         		WHERE s.site_id = b.site_id";
-        $sql_orderby = " ORDER BY s.name, b.name";
+        $sql_orderby = " ORDER BY s.name, (b.name + 0)";
 
         $sql = $sql_select . $sql_orderby;
 

@@ -1,8 +1,9 @@
-/*
- *  Auteur:     Stefan Meier
- *  Version:    2010.11.07
+/**
+ * @author:     Stefan Meier
+ * @version:    20110710
+ * 
+ * This script holds the application params
  */
-// Initialisation des variables
 
 var lang = 'en';
 var resourceBundle = new Array();
@@ -19,10 +20,7 @@ var month = new Date().getMonth() + 1;
 var year = new Date().getFullYear();
 var room = 13;
 var building = 27;
-var monthNames;
-var monthShortNames;
-var dayNames;
-var dayShortNames;
+
 var maxYearOffset = 5; //date max. dans le futur
 
 function init() {
@@ -106,59 +104,26 @@ function appUI() {
     $.ajax({
  	   type: "GET",
  	   url: "html/js/lang.php",
- 	   dataType: "script"
+ 	   dataType: "script",
+ 	  success: function(msg){
+ 		$('#page-title').html(resourceBundle["application-title"]);
+
+ 	    $('#information-title').html(resourceBundle["calendar-information"]);
+ 	    $('#calendar-choice').html(resourceBundle["calendar-choice"]);
+ 	    $('#go-to').html(resourceBundle["calendar-goTo"]);
+ 	    
+
+       $('#month').html('');
+       for (i = 1; i <= 12; i++) {
+
+           $('#month').append('<option value=\"' + i + '\">' + resourceBundle["month-" + i + "-full"] + '</option>');
+       }
+
+       buildings();
+       calendar();
+ 	    
+ 	  }
  	 });
-    
-    $.ajax({
-        type: "GET",
-        url: "xml/lang/" + lang + "/application.xml",
-        dataType: "xml",
-        success: function(xml) {
-            var application = $('application', xml);
-
-            //$('#page-title').html($('application>title', xml).text());
-
-            $('#page-title').html(application.children('page-title').text());
-
-            $('#information-title').html(application.children('information-title').text());
-            $('#calendar-choice').html(application.children('calendar-choice').text());
-            $('#go-to').html(application.children('go-to').text());
-
-            var months = application.children('months');
-            monthNames = new Array();
-            monthShortNames = new Array();
-
-            var count = 1;
-            $('#month').html('');
-            months.children('month').each(function(){
-                var mName = $(this).children('full').text();
-                monthNames.push(mName);
-
-                monthShortNames.push($(this).children('short').text())
-
-                $('#month').append('<option value=\"' + count + '\">' + mName + '</option>');
-                count++;
-            });
-
-
-            dayNames = new Array();
-            dayShortNames = new Array();
-
-            count = 1;
-            var days = application.children('days');
-
-            days.children('day').each(function(){
-                var dName = $(this).children('full').text();
-                dayNames.push(dName);
-                dayShortNames.push($(this).children('short').text())
-                count++;
-            });
-
-            buildings();
-            calendar();
-        }
-    });
-
 }
 
 function buildings() {
@@ -208,7 +173,7 @@ function calendar() {
         }
 
     });
-    $("#monthname").html(monthNames[(parseInt(month) - 1)]);
+    $("#monthname").html(resourceBundle["month-" + (parseInt(month) - 1) + "full"]);
     $("#yearName").html(year);
 
     if (lang == 'ja') {

@@ -194,8 +194,8 @@ $(document).ready(function() {
     $("#repeat_date").hide();
     // Datepicker
     $(".datepicker").datepicker({
-        dayNamesMin: [dayShortNames[6], dayShortNames[0], dayShortNames[1], dayShortNames[2], dayShortNames[3], dayShortNames[4], dayShortNames[5]],
-        monthNames: [monthNames[0],monthNames[1],monthNames[2],monthNames[3],monthNames[4],monthNames[5],monthNames[6],monthNames[7],monthNames[8],monthNames[9],monthNames[10],monthNames[11]],
+        dayNamesMin: [resourceBundle["day-1-short"], resourceBundle["day-2-short"], resourceBundle["day-3-short"], resourceBundle["day-4-short"], resourceBundle["day-5-short"], resourceBundle["day-6-short"], resourceBundle["day-7-short"]],
+        monthNames: [resourceBundle["month-1-full"],resourceBundle["month-2-full"],resourceBundle["month-3-full"],resourceBundle["month-4-full"],resourceBundle["month-5-full"],resourceBundle["month-6-full"],resourceBundle["month-7-full"],resourceBundle["month-8-full"],resourceBundle["month-9-full"],resourceBundle["month-10-full"],resourceBundle["month-11-full"],resourceBundle["month-12-full"]],
         firstDay: 1,
         maxDate: (new Date().getFullYear() + maxYearOffset) + '-12-31',
         minDate: new Date().getFullYear() + '-1-1',

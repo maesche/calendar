@@ -28,9 +28,17 @@ $keys = array(
 "calendar-message-confirm-repeat-this" => $languageLinker->resourceBundle->get("calendar-message-confirm-repeat-this"),
 "calendar-event-new" => $languageLinker->resourceBundle->get("calendar-event-new"),
 "calendar-event-edit" => $languageLinker->resourceBundle->get("calendar-event-edit"),
-"calendar-message-check" => $languageLinker->resourceBundle->get("calendar-message-check")
-)
-
+"calendar-message-check" => $languageLinker->resourceBundle->get("calendar-message-check"),
+"calendar-error-time" => $languageLinker->resourceBundle->get("calendar-error-time"),
+"calendar-error-unavailable" => $languageLinker->resourceBundle->get("calendar-error-unavailable"),
+"calendar-error-user" => $languageLinker->resourceBundle->get("calendar-error-user"),
+"calendar-error-access" => $languageLinker->resourceBundle->get("calendar-error-access"),
+"calendar-error-room" => $languageLinker->resourceBundle->get("calendar-error-room"),
+"calendar-error-action" => $languageLinker->resourceBundle->get("calendar-error-action"),
+"calendar-error-invalid" => $languageLinker->resourceBundle->get("calendar-error-invalid"),
+"calendar-error-dateFormat" => $languageLinker->resourceBundle->get("calendar-error-dateFormat"),
+"calendar-error-system" => $languageLinker->resourceBundle->get("calendar-error-system")
+);
 ?>
 
 <?php 

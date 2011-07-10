@@ -2,10 +2,7 @@ tail -f /private/var/log/apache2/error_Log
 
 A implementer
 --------------
-language room categories / pop up dialog
 
-
-language php => json
 getSiblings() dans eventdialog
 dates = null dans add, update, delete ou getSiblings() dans ces fonctions à partir d'une date
 fichier lock fermé?
@@ -21,8 +18,6 @@ synchronisation des objects (voir FileMediator)
 modifier seulement dates futures pour les occurences
 tous les mises à jour passer par la fonction update
 
-afficher la liste des salles de manière regroupée
-check date with id_event (unset) in controller
 
 if repeat date <= date => error
 
@@ -31,16 +26,12 @@ définir responsable par salle
 faire une page d'accueil ou redirection sur la salle par défaut en fonction de l'appartenance (fbm-calencdar-*)
 
 aller à "aujourd'hui"
-regroupement des types de salle
 
 vue semaine
-drag and drop
-copier un événement
 
 Corrections
 -----------
-Par défaut, whole_day sélectionne(change cela)
-dialog-title en fonction de la langue choisie
+Par défaut, whole_day sélectionne(changer cela)
 
 A revoir
 --------
@@ -50,10 +41,6 @@ Calendar
 date = explode("-", $e->getDate());
 $formattedEvents[$date[2]][] = $e;
 
-rendre les fonctions JS plus lisibles et les séparer selon MVC
-faire le ménage des fonctions JS inutiles
-migration à extjs?
-traitement langues avec php qui retourne un objet js
 
 Solutions temporaires
 -------------------

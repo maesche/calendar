@@ -170,7 +170,7 @@ function calendar() {
         }
 
     });
-    $("#monthname").html(resourceBundle["month-" + (parseInt(month) - 1) + "full"]);
+    $("#monthname").html(resourceBundle["month-" + (parseInt(month)) + "-full"]);
     $("#yearName").html(year);
 
     if (lang == 'ja') {

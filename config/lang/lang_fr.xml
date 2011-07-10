@@ -79,7 +79,7 @@
 	<entry key="calendar-message-confirm-repeat-delete">Souhaitez-vous supprimer cet événement ainsi que toutes ses résevations futures ou uniquement celle sélectionnée ?</entry> 	
 
 	<entry key="calendar-event-owner">Propriétaire</entry> 
-	<entry key="calendar-event-new">Nouveau événement</entry> 
+	<entry key="calendar-event-new">Nouvel événement</entry> 
 	<entry key="calendar-event-edit">Editer événement</entry> 
 	<entry key="calendar-event-save">Sauvegarder</entry> 
 	<entry key="calendar-event-delete">Supprimer</entry> 

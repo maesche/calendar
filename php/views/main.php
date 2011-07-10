@@ -3,7 +3,7 @@
  *
   application:	FBM Calendar
   auteur: 	Stefan Meier
-  version:	2010.10.01
+  version:	20110710
 
  *
  */
@@ -43,13 +43,6 @@ require_once('php/application/LanguageLinker.php');
         <link rel="shortcut icon" href="https://wwwfbm.unil.ch/favicon.ico" type="image/x-icon" />
     </head>
     <body>
-    <?php 
-    /*$globalRegistry = $_SESSION["GlobalRegistry"];
-    
-    
-    $languageLinker = $globalRegistry->languageLinker;
-    echo $languageLinker->resourceBundle->get("room-category-other");*/
-    ?>
         <div id="main">
             <span style="color:red; font-weight: bold">Version de développement</span>
             <table border="0" cellpadding="0" cellspacing="0" width="1240"

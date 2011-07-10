@@ -1,9 +1,16 @@
 <!-- BEGIN NEW EVENT DIALOG -->
 <script type="text/javascript" src="html/js/event.js" ></script>
 <?php
+require_once('application/GlobalRegistry.php');
+require_once('application/LanguageLinker.php');
 include_once("model/class/Event.php");
+
 session_start();
 include_once("helpers/System.php");
+
+
+$globalRegistry = $_SESSION["GlobalRegistry"];
+$languageLinker = $globalRegistry->languageLinker;
 
 $posX = $_GET['posX'];
 $posY = $_GET['posY'];
@@ -116,7 +123,7 @@ if (!$disable) {
         <div class="input text">
             <?php if ($uid != $currentUser) {
                 ?>
-                <label for="creator" id="event-user"></label>
+                <label for="creator" id="event-user"><?php echo $languageLinker->resourceBundle->get("calendar-event-owner");?></label>
                 <input type="text" name="creator" id="creator" value="<?php echo $uid ?>" readonly="readonly" />
             <?php } ?>
             <!-- original entries, to know which part has been modified -->
@@ -131,7 +138,7 @@ if (!$disable) {
         </div>
     <?php } ?>
     <div class="input text">
-        <label for="name" id="event-title"></label>
+        <label for="name" id="event-title"><?php echo $languageLinker->resourceBundle->get("calendar-event-title");?></label>
         <input type="text" name="name" id="name" class="required" value="<?php echo $title; ?>"/>
         <input type="hidden" name="uid" id="uid" value="<?php echo $currentUser ?>"/>
         <input type="hidden" name="action" id="action" value="<?php echo $mode ?>" />
@@ -140,16 +147,16 @@ if (!$disable) {
         <input type="hidden" name="modifyall" id="modifyall" value="true" />
     </div>
     <div class="input text">
-        <label for="edate" id="event-date"></label>
+        <label for="edate" id="event-date"><?php echo $languageLinker->resourceBundle->get("calendar-event-date");?></label>
         <input type="text" name="edate" id="edate" class="datepicker" value="<?php echo $edate ?>" readonly/>
     </div>
     <div class="input">
-        <label for="whole_day" id="event-whole-day"></label>
+        <label for="whole_day" id="event-whole-day"><?php echo $languageLinker->resourceBundle->get("calendar-event-wholeDay");?></label>
         <input type="checkbox" name="whole_day" id="whole_day" <?php echo ($wholeDay) ? "checked=\"checked\"" : ""; ?> />
     </div>
     <div class="input time" id="start">
 
-        <label for="start_hour" id="event-start"></label>
+        <label for="start_hour" id="event-start"><?php echo $languageLinker->resourceBundle->get("calendar-event-start");?></label>
 
         <select name="start_hour" id="start_hour">
             <?php
@@ -187,7 +194,7 @@ if (!$disable) {
     </div>
 
     <div class="input time" id="end">
-        <label for="end_hour" id="event-end">Fin</label>
+        <label for="end_hour" id="event-end"><?php echo $languageLinker->resourceBundle->get("calendar-event-end");?></label>
         <select name="end_hour" id="end_hour">
             <?php
             for ($i = 0; $i <= 23; $i++) {
@@ -224,28 +231,34 @@ if (!$disable) {
     </div>
 
     <div class="input select">
-        <label for="repeat" id="event-repeat">Répéter</label>
+        <label for="repeat" id="event-repeat"><?php echo $languageLinker->resourceBundle->get("calendar-event-repeat");?></label>
         <select name="repeat" id="repeat">
-            <option <?php echo ($repeatMode == 'n') ? "selected=\"selected\"" : "" ?> value="n" id="repeat-n">Jamais</option>
-            <option <?php echo ($repeatMode == 'd') ? "selected=\"selected\"" : "" ?> value="d" id="repeat-d">Chaque jour</option>
-            <option <?php echo ($repeatMode == 'w') ? "selected=\"selected\"" : "" ?> value="w" id="repeat-w">Chaque semaine</option>
-            <option <?php echo ($repeatMode == '2w') ? "selected=\"selected\"" : "" ?> value="2w" id="repeat-2w">Toutes les deux semaines</option>
-            <option <?php echo ($repeatMode == 'm') ? "selected=\"selected\"" : "" ?> value="m" id="repeat-m">Chaque mois</option>
-            <option <?php echo ($repeatMode == 'y') ? "selected=\"selected\"" : "" ?> value="y" id="repeat-y">Chaque année</option>
+            <option <?php echo ($repeatMode == 'n') ? "selected=\"selected\"" : "" ?> value="n" id="repeat-n"><?php echo $languageLinker->resourceBundle->get("calendar-event-never");?></option>
+            <option <?php echo ($repeatMode == 'd') ? "selected=\"selected\"" : "" ?> value="d" id="repeat-d"><?php echo $languageLinker->resourceBundle->get("calendar-event-daily");?></option>
+            <option <?php echo ($repeatMode == 'w') ? "selected=\"selected\"" : "" ?> value="w" id="repeat-w"><?php echo $languageLinker->resourceBundle->get("calendar-event-weekly");?></option>
+            <option <?php echo ($repeatMode == '2w') ? "selected=\"selected\"" : "" ?> value="2w" id="repeat-2w"><?php echo $languageLinker->resourceBundle->get("calendar-event-halfMonthly");?></option>
+            <option <?php echo ($repeatMode == 'm') ? "selected=\"selected\"" : "" ?> value="m" id="repeat-m"><?php echo $languageLinker->resourceBundle->get("calendar-event-monthly");?></option>
+            <option <?php echo ($repeatMode == 'y') ? "selected=\"selected\"" : "" ?> value="y" id="repeat-y"><?php echo $languageLinker->resourceBundle->get("calendar-event-yearly");?></option>
         </select>
     </div>
     <div class="input text" id="repeat_date">
-        <label for="repeat_end" id="repeat-until"></label>
+        <label for="repeat_end" id="repeat-until"><?php echo $languageLinker->resourceBundle->get("calendar-event-until");?></label>
         <input type="text" name="repeat_end" id="repeat_end" class="datepicker" value="<?php echo $repeatEnd ?>" readonly/>
     </div>
 
     <div class="input textarea">
-        <label for="description" id="event-description"></label>
+        <label for="description" id="event-description"><?php echo $languageLinker->resourceBundle->get("calendar-event-description");?></label>
         <textarea name="description" id="description" cols="20" rows="20"><?php echo $description ?></textarea>
     </div>
 </form>
 
-<div id="dialog-confirm-repeat" title="Confirmation"></div>
-<div id="dialog-alerte-indisponibilite" title="Plages horaires indisponibles"></div>
+<div id="dialog-confirm-repeat" title="Confirmation">
+<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>
+<?php echo $languageLinker->resourceBundle->get("calendar-message-confirm-repeat-update");?>
+</p>
+</div>
+<div id="dialog-alerte-indisponibilite" title="Plages horaires indisponibles">
+<?php echo $languageLinker->resourceBundle->get("calendar-message-confirm-repeat-delete");?>
+</div>
 
 <!-- END NEW EVENT DIALOG -->

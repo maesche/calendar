@@ -65,7 +65,7 @@ class XMLResourceBoundle{
 		$xpath = new DOMXPath($this->doc);
 		$entries = $xpath->evaluate($query);
 		
-		if ($entries->item(0)->nodeValue!=""){
+		if ($entries->length > 0){
 			return($entries->item(0)->nodeValue);
 		}else{
 			return("???".$keyId."???");

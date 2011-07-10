@@ -22,7 +22,7 @@ require_once('php/application/LanguageLinker.php');
         <link type="text/css" rel="StyleSheet" href="html/css/UNIL-FBM_default.css" />
         <link rel="stylesheet" type="text/css" href="html/css/default.css" />
 
-
+		<script type="text/javascript" src="html/js/lang.php"></script>
         <!-- Begin JQuery -->
         <link type="text/css" rel="StyleSheet" href="html/css/jquery-ui-1.8.4.custom.css" />
         <script type="text/javascript" src="html/js/jquery.js"></script>
@@ -51,6 +51,9 @@ require_once('php/application/LanguageLinker.php');
     $languageLinker = $globalRegistry->languageLinker;
     echo $languageLinker->resourceBundle->get("room-category-other");*/
     ?>
+        <script language="JavaScript">
+	alert(resourceBundle["calendar-message-confirm-repeat-update"]);
+    </script>
         <div id="main">
             <span style="color:red; font-weight: bold">Version de développement</span>
             <table border="0" cellpadding="0" cellspacing="0" width="1240"

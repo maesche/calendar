@@ -30,7 +30,7 @@ function wholeDay() {
 }
 
 function updateConfirm() {
-    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes les réservations futures?</p>");
+   // $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes les réservations futures?</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
@@ -51,7 +51,7 @@ function updateConfirm() {
 }
 
 function confirmChanges(action) {
-    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous supprimer cet événement y compris toutes ses réservations futures ou uniquement la réservation sélectionnée?</p>");
+    //$("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous supprimer cet événement y compris toutes ses réservations futures ou uniquement la réservation sélectionnée?</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
@@ -77,7 +77,6 @@ function confirmChanges(action) {
 }
 
 function alerteIndisponibilite() {
-   
     $("#dialog-alerte-indisponibilite").dialog({
         resizable: false,
         width: 350,
@@ -106,7 +105,7 @@ function repeatSelector() {
 }
 
 function eventUI(lang) {
-    $.ajax({
+   /* $.ajax({
         type: "GET",
         url: "xml/lang/" + lang + "/event.xml",
         dataType: "xml",
@@ -116,7 +115,7 @@ function eventUI(lang) {
 
             $('.dialog-title').html(event.children($('.dialog-title').attr('id')).text());
 
-            $('#event-user').html(event.children('user').text());
+            /*$('#event-user').html(event.children('user').text());
             $('#event-title').html(event.children('title').text());
             $('#event-date').html(event.children('date').text());
             $('#event-whole-day').html(event.children('whole-day').text());
@@ -154,7 +153,7 @@ function eventUI(lang) {
             errormsg['unavailable'] = errors.children('unavailable').text();
             checkmsg = '<span style=\"color:red\">' + messages.children('check').text() + '</span>';
         }
-    });
+    });*/
 }
 
 $(document).ready(function() {

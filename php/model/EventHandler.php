@@ -292,7 +292,7 @@ class EventHandler {
 
         $currentEvents = array();
 
-        foreach ($this->getEvents($room, $startDate, $endDate) as $e) {
+        foreach ($this->getEvents($room, $startDate, $endDate . " 23:59") as $e) {
             $id = $e->getId();
             $date = $e->getDBegin();
             $Hbegin = $e->getHBegin();
@@ -308,13 +308,14 @@ class EventHandler {
 
 
                 $isAvailable = true;
-
 //s'il existe un événement pour cette date, on teste la disponibilité de la plage horaire
                 if (isset($currentEvents[$date])) {
+                	
                 	/*
                 	 * Si maxEvents <= 0, on ne teste pas la disponibilité
                 	 */
 					if ($maxEvents > 0) {
+						
                    		$isAvailable = $this->isAvailable($currentEvents[$date], $e, $maxEvents);
 					}
                 }

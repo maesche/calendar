@@ -49,7 +49,6 @@ class EventController {
 			while (!$finish) {
 				if (flock($file_handle, LOCK_EX)) {
 					$dates = null;
-
 					$verifiedEvents = $this->eventHandler->checkAvailability($this->room, $this->timeTable, $this->event->getDBegin(), $this->event->getLastDate());
 
 					if (count($verifiedEvents["unavailable"]) > 0 && !($this->insertAvailable)) {

@@ -88,7 +88,7 @@ class EventController {
 				$this->eventHandler->delete($this->room, $this->event, true);
 				break;
 			case "delete-all" :
-				$this->eventHandler->delete($this->room, $this->event, true, $this->event->getDBegin());
+				$this->eventHandler->delete($this->room, $this->event, false, $this->event->getDBegin());
 				break;
 			case "update-current-nodate" :
 				$this->eventHandler->update($this->room, $this->event);

@@ -32,49 +32,49 @@ function wholeDay() {
 }
 
 function updateConfirm() {
+	buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-event-cancel"]] = function() {
+        $("#modifyall").val("");
+        $( this ).dialog( "close" );
+    };
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-yes"]] = function() {
+        $("#modifyall").val("true");
+        sendForm('edit');
+        $( this ).dialog( "close" );
+    };
 	$("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>" + resourceBundle["calendar-message-confirm-repeat-update"] + "</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
         width: 550,
         modal: true,
-        buttons: {
-            "Annuler": function() {
-                $("#modifyall").val("");
-                $( this ).dialog( "close" );
-            },
-            "Oui": function() {
-                $("#modifyall").val("true");
-                sendForm('edit');
-                $( this ).dialog( "close" );
-            }
-        }
+        buttons: buttonsOpts
     });
 }
 
 function confirmChanges(action) {
+    buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-event-cancel"]] = function() {
+        $("#modifyall").val("");
+        $( this ).dialog( "close" );
+    };
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-allFuture"]] = function() {
+        $("#modifyall").val("true");
+        sendForm(action);
+        $( this ).dialog( "close" );
+    };
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-thisEvent"]] =  function() {
+        $("#modifyall").val("false");
+        sendForm(action);
+        $( this ).dialog( "close" );
+    };
     $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>" + resourceBundle["calendar-message-confirm-repeat-update"] + "</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
         width: 550,
         modal: true,
-        buttons: {
-            "Annuler": function() {
-                $("#modifyall").val("");
-                $( this ).dialog( "close" );
-            },
-            "Toutes les réservations futures": function() {
-                $("#modifyall").val("true");
-                sendForm(action);
-                $( this ).dialog( "close" );
-            },
-            "Seulement cette réservation": function() {
-                $("#modifyall").val("false");
-                sendForm(action);
-                $( this ).dialog( "close" );
-            }
-        }
+        buttons: buttonsOpts
     });
 }
 

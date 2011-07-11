@@ -37,10 +37,13 @@ $keys = array(
 "calendar-error-action" => $languageLinker->resourceBundle->get("calendar-error-action"),
 "calendar-error-invalid" => $languageLinker->resourceBundle->get("calendar-error-invalid"),
 "calendar-error-dateFormat" => $languageLinker->resourceBundle->get("calendar-error-dateFormat"),
-"calendar-error-system" => $languageLinker->resourceBundle->get("calendar-error-system")
+"calendar-error-system" => $languageLinker->resourceBundle->get("calendar-error-system"),
+"calendar-message-confirm-button-yes" => $languageLinker->resourceBundle->get("calendar-message-confirm-button-yes"),
+"calendar-message-confirm-button-no" => $languageLinker->resourceBundle->get("calendar-message-confirm-button-no"),
+"calendar-message-confirm-button-allFuture" => $languageLinker->resourceBundle->get("calendar-message-confirm-button-allFuture"),
+"calendar-message-confirm-button-thisEvent" => $languageLinker->resourceBundle->get("calendar-message-confirm-button-thisEvent")
 );
 ?>
-
 <?php 
 foreach ($keys as $key => $value) {
 	echo "resourceBundle[\"$key\"] = \"$value\";\n";

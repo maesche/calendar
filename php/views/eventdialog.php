@@ -144,7 +144,7 @@ if (!$disable) {
         <input type="hidden" name="action" id="action" value="<?php echo $mode ?>" />
         <input type="hidden" name="event_id" id="event_id" value="<?php echo $event_id ?>" />
         <input type="hidden" name="date_id" id="date_id" value="<?php echo $date_id ?>" />
-        <input type="hidden" name="modifyall" id="modifyall" value="true" />
+        <input type="hidden" name="modifyall" id="modifyall" value="false" />
     </div>
     <div class="input text">
         <label for="edate" id="event-date"><?php echo $languageLinker->resourceBundle->get("calendar-event-date");?></label>
@@ -252,7 +252,7 @@ if (!$disable) {
     </div>
 </form>
 
-<div id="dialog-confirm-repeat" title="Confirmation"></div>
-<div id="dialog-alerte-indisponibilite" title="Plages horaires indisponibles"></div>
+<div id="dialog-confirm-repeat" title="<?php echo $languageLinker->resourceBundle->get("calendar-message-confirm-title");?>"></div>
+<div id="dialog-alerte-indisponibilite" title="<?php echo $languageLinker->resourceBundle->get("calendar-error-unavailable-title");?>"></div>
 
 <!-- END NEW EVENT DIALOG -->

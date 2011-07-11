@@ -61,6 +61,7 @@
 	<entry key="room-category-rent">Matériel de prêt</entry> 
 	 
 	<entry key="calendar-error-time">L'heure de fin doit être supérieure à l'heure de début.</entry> 
+	<entry key="calendar-error-unavailable-title">Plages horaires indisponibles</entry> 
 	<entry key="calendar-error-unavailable">Les dates suivantes sont indisponibles.</entry> 
 	<entry key="calendar-error-user">Cet événement ne peut pas être modifié car il appartient à un autre utilisateur.</entry> 
 	<entry key="calendar-error-access">Vous n'avez pas d'autorisation pour effectuer cette action.</entry>
@@ -72,12 +73,14 @@
 	
 	<entry key="calendar-message-check">Veuillez corriger les champs en rouge.</entry> 
 	<entry key="calendar-message-repeatInfo">Cet événement est répétitif. Toutes les dates seront modifiées.</entry> 
+	<entry key="calendar-message-confirm-title">Confirmation</entry> 
 	<entry key="calendar-message-confirm-repeat-update">Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes ses réservations futures?</entry>
-	<entry key="calendar-message-confirm-title">Demande de confirmation</entry>
-	<entry key="calendar-message-confirm-repeat-all">Toutes les réservations futures</entry>
-	<entry key="calendar-message-confirm-repeat-this">Seulement cet événement</entry>
 	<entry key="calendar-message-confirm-repeat-delete">Souhaitez-vous supprimer cet événement ainsi que toutes ses résevations futures ou uniquement celle sélectionnée ?</entry> 	
-
+	<entry key="calendar-message-confirm-button-yes">Oui</entry> 
+	<entry key="calendar-message-confirm-button-no">No</entry> 
+	<entry key="calendar-message-confirm-button-allFuture">Toutes les réservations futures</entry> 
+	<entry key="calendar-message-confirm-button-thisEvent">Seulement cet événement</entry> 
+	
 	<entry key="calendar-event-owner">Propriétaire</entry> 
 	<entry key="calendar-event-new">Nouvel événement</entry> 
 	<entry key="calendar-event-edit">Editer événement</entry> 

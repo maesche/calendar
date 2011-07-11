@@ -95,7 +95,7 @@ $(document).ready(function() {
 
     setTimeout('sessionTimeout()', 3600001);
     init();
-    var buttonsOpts = {}
+    buttonsOpts = {}
     buttonsOpts[resourceBundle["calendar-event-cancel"]] = $.extend(function() {
         $(this).dialog("close");
     },{

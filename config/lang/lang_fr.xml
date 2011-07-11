@@ -76,6 +76,7 @@
 	<entry key="calendar-message-confirm-title">Confirmation</entry> 
 	<entry key="calendar-message-confirm-repeat-update">Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes ses réservations futures?</entry>
 	<entry key="calendar-message-confirm-repeat-delete">Souhaitez-vous supprimer cet événement ainsi que toutes ses résevations futures ou uniquement celle sélectionnée ?</entry> 	
+	<entry key="calendar-message-confirm-button-ok">Ok</entry> 
 	<entry key="calendar-message-confirm-button-yes">Oui</entry> 
 	<entry key="calendar-message-confirm-button-no">No</entry> 
 	<entry key="calendar-message-confirm-button-allFuture">Toutes les réservations futures</entry> 

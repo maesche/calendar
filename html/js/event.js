@@ -79,14 +79,18 @@ function confirmChanges(action) {
 }
 
 function alerteIndisponibilite() {
+	buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-ok"]] = function() {
+        $( this ).dialog( "close" );
+    };
     $("#dialog-alerte-indisponibilite").dialog({
         resizable: false,
         width: 350,
         modal: true,
-        buttons: {
-            "OK": function() {
+        buttons: buttonsOpts
+            /*"OK": function() {
                 $( this ).dialog( "close" );
-            }/*,
+            },
             "Insérer évéenemts disponibles": function() {
                 sendForm('insert-available');
                 $( this ).dialog( "close" );

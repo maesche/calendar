@@ -95,7 +95,6 @@ function alerteIndisponibilite() {
                 sendForm('insert-available');
                 $( this ).dialog( "close" );
             }*/
-        }
     });
 }
 

@@ -1,6 +1,8 @@
-/*
- *  Auteur:     Stefan Meier
- *  Version:    2010.11.07
+/**
+ * @author:     Stefan Meier
+ * @version:    20110711
+ * 
+ * This script is a listener for all eventdialog events
  */
 
 function disableForm() {
@@ -30,67 +32,69 @@ function wholeDay() {
 }
 
 function updateConfirm() {
-    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous vraiment mettre à jour cet événement ainsi que toutes les réservations futures?</p>");
+	buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-event-cancel"]] = function() {
+        $("#modifyall").val("");
+        $( this ).dialog( "close" );
+    };
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-yes"]] = function() {
+        $("#modifyall").val("true");
+        sendForm('edit');
+        $( this ).dialog( "close" );
+    };
+	$("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>" + resourceBundle["calendar-message-confirm-repeat-update"] + "</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
         width: 550,
         modal: true,
-        buttons: {
-            "Annuler": function() {
-                $("#modifyall").val("");
-                $( this ).dialog( "close" );
-            },
-            "Oui": function() {
-                $("#modifyall").val("true");
-                sendForm('edit');
-                $( this ).dialog( "close" );
-            }
-        }
+        buttons: buttonsOpts
     });
 }
 
 function confirmChanges(action) {
-    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>Souhaitez-vous supprimer cet événement y compris toutes ses réservations futures ou uniquement la réservation sélectionnée?</p>");
+    buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-event-cancel"]] = function() {
+        $("#modifyall").val("");
+        $( this ).dialog( "close" );
+    };
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-allFuture"]] = function() {
+        $("#modifyall").val("true");
+        sendForm(action);
+        $( this ).dialog( "close" );
+    };
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-thisEvent"]] =  function() {
+        $("#modifyall").val("false");
+        sendForm(action);
+        $( this ).dialog( "close" );
+    };
+    $("#dialog-confirm-repeat").html("<p><span class=\"ui-icon ui-icon-alert\" style=\"float:left; margin:0 7px 20px 0;\"></span>" + resourceBundle["calendar-message-confirm-repeat-update"] + "</p>");
     $("#dialog-confirm-repeat").dialog({
         resizable: false,
         height:130,
         width: 550,
         modal: true,
-        buttons: {
-            "Annuler": function() {
-                $("#modifyall").val("");
-                $( this ).dialog( "close" );
-            },
-            "Toutes les réservations futures": function() {
-                $("#modifyall").val("true");
-                sendForm(action);
-                $( this ).dialog( "close" );
-            },
-            "Seulement cette réservation": function() {
-                $("#modifyall").val("false");
-                sendForm(action);
-                $( this ).dialog( "close" );
-            }
-        }
+        buttons: buttonsOpts
     });
 }
 
 function alerteIndisponibilite() {
-   
+	buttonsOpts = {}
+    buttonsOpts[resourceBundle["calendar-message-confirm-button-ok"]] = function() {
+        $( this ).dialog( "close" );
+    };
     $("#dialog-alerte-indisponibilite").dialog({
         resizable: false,
         width: 350,
         modal: true,
-        buttons: {
-            "OK": function() {
+        buttons: buttonsOpts
+            /*"OK": function() {
                 $( this ).dialog( "close" );
-            }/*,
+            },
             "Insérer évéenemts disponibles": function() {
                 sendForm('insert-available');
                 $( this ).dialog( "close" );
             }*/
-        }
     });
 }
 
@@ -105,62 +109,7 @@ function repeatSelector() {
     }
 }
 
-function eventUI(lang) {
-    $.ajax({
-        type: "GET",
-        url: "xml/lang/" + lang + "/event.xml",
-        dataType: "xml",
-        success: function(xml) {
-
-            var event = $('event', xml);
-
-            $('.dialog-title').html(event.children($('.dialog-title').attr('id')).text());
-
-            $('#event-user').html(event.children('user').text());
-            $('#event-title').html(event.children('title').text());
-            $('#event-date').html(event.children('date').text());
-            $('#event-whole-day').html(event.children('whole-day').text());
-            $('#event-start').html(event.children('start').text());
-            $('#event-end').html(event.children('end').text());
-
-            var repeat = event.children('repeat');
-
-            $('#event-repeat').html(repeat.children('title').text());
-            $('#repeat-n').html(repeat.children('never').text());
-            $('#repeat-d').html(repeat.children('daily').text());
-            $('#repeat-w').html(repeat.children('weekly').text());
-            $('#repeat-2w').html(repeat.children('half-monthly').text());
-            $('#repeat-m').html(repeat.children('monthly').text());
-            $('#repeat-y').html(repeat.children('yearly').text());
-            $('#repeat-until').html(repeat.children('until').text());
-
-
-            $('#event-description').html(event.children('description').text());
-
-
-            $('#save').html('<span class=\"ui-button-text\">' + event.children('save').text() + '</span>');
-            $('#delete').html('<span class=\"ui-button-text\">' + event.children('delete').text() + '</span>');
-            $('#cancel').html('<span class=\"ui-button-text\">' + event.children('cancel').text() + '</span>');
-
-
-            var messages = event.children('messages');
-
-            $('#message-repeat').html(messages.children('repeat-info').text());
-            $('#message-other-user').html(messages.children('other-user').text());
-
-            var errors = messages.children('error');
-
-            errormsg['time'] = errors.children('time').text();
-            errormsg['unavailable'] = errors.children('unavailable').text();
-            checkmsg = '<span style=\"color:red\">' + messages.children('check').text() + '</span>';
-        }
-    });
-}
-
 $(document).ready(function() {
-
-    eventUI(lang);
-
     $('#name').focus();
 
     if ($("#edate").val() == '') {
@@ -195,8 +144,8 @@ $(document).ready(function() {
     $("#repeat_date").hide();
     // Datepicker
     $(".datepicker").datepicker({
-        dayNamesMin: [dayShortNames[6], dayShortNames[0], dayShortNames[1], dayShortNames[2], dayShortNames[3], dayShortNames[4], dayShortNames[5]],
-        monthNames: [monthNames[0],monthNames[1],monthNames[2],monthNames[3],monthNames[4],monthNames[5],monthNames[6],monthNames[7],monthNames[8],monthNames[9],monthNames[10],monthNames[11]],
+        dayNamesMin: [resourceBundle["day-1-short"], resourceBundle["day-2-short"], resourceBundle["day-3-short"], resourceBundle["day-4-short"], resourceBundle["day-5-short"], resourceBundle["day-6-short"], resourceBundle["day-7-short"]],
+        monthNames: [resourceBundle["month-1-full"],resourceBundle["month-2-full"],resourceBundle["month-3-full"],resourceBundle["month-4-full"],resourceBundle["month-5-full"],resourceBundle["month-6-full"],resourceBundle["month-7-full"],resourceBundle["month-8-full"],resourceBundle["month-9-full"],resourceBundle["month-10-full"],resourceBundle["month-11-full"],resourceBundle["month-12-full"]],
         firstDay: 1,
         maxDate: (new Date().getFullYear() + maxYearOffset) + '-12-31',
         minDate: new Date().getFullYear() + '-1-1',

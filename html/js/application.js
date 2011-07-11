@@ -1,11 +1,12 @@
-/*
- *  Auteur:     Stefan Meier
- *  Version:    2010.11.07
+/**
+ * @author:     Stefan Meier
+ * @version:    20110710
+ * 
+ * This script holds the application params
  */
-// Initialisation des variables
 
 var lang = 'en';
-
+var resourceBundle = new Array();
 var dialogTitle = '';
 var caldate = '';
 var view = '';
@@ -13,16 +14,11 @@ var eventMode = 'add';
 var eventPosX;
 var eventPosY;
 var eventSalle;
-var errormsg = new Array();
-var checkmsg = "";
 var month = new Date().getMonth() + 1;
 var year = new Date().getFullYear();
 var room = 13;
 var building = 27;
-var monthNames;
-var monthShortNames;
-var dayNames;
-var dayShortNames;
+
 var maxYearOffset = 5; //date max. dans le futur
 
 function init() {
@@ -74,13 +70,13 @@ function init() {
 }
 
 function newEvent(caldate) {
-    this.dialogTitle = '<span class=\"dialog-title\" id=\"new\"></span>';
+    this.dialogTitle = "<span class=\"dialog-title\" id=\"new\">" + resourceBundle["calendar-event-new"] + "</span>";
     this.eventMode = 'add';
     this.caldate = caldate;
 }
 
 function editEvent(posX, posY, caldate) {
-    this.dialogTitle = '<span class=\"dialog-title\" id=\"edit\"></span>';
+    this.dialogTitle = "<span class=\"dialog-title\" id=\"edit\">" + resourceBundle["calendar-event-edit"] + "</span>";
     this.eventMode = 'edit';
     this.eventPosX = posX;
     this.eventPosY = posY;
@@ -88,6 +84,7 @@ function editEvent(posX, posY, caldate) {
 }
 
 function appUI() {
+
     if ($.cookie("lang") != null) {
         this.lang = $.cookie("lang");
     }
@@ -95,59 +92,35 @@ function appUI() {
     $('.language').css('font-weight', 'normal');
     $('#' + lang).css('font-weight', 'bold');
 
-
-
     $.ajax({
         type: "GET",
-        url: "xml/lang/" + lang + "/application.xml",
-        dataType: "xml",
-        success: function(xml) {
+        url: "php/controller/ApplicationController.php?lang=" + lang,
+        success: function(msg) {
+        	 $.ajax({
+        	 	   type: "GET",
+        	 	   url: "html/js/lang.php",
+        	 	   dataType: "script",
+        	 	  success: function(msg){
+        	 		$('#page-title').html(resourceBundle["application-title"]);
 
-            var application = $('application', xml);
+        	 	    $('#information-title').html(resourceBundle["calendar-information"]);
+        	 	    $('#calendar-choice').html(resourceBundle["calendar-choice"]);
+        	 	    $('#go-to').html(resourceBundle["calendar-goTo"]);
+        	 	    
 
-            //$('#page-title').html($('application>title', xml).text());
+        	       $('#month').html('');
+        	       for (i = 1; i <= 12; i++) {
 
-            $('#page-title').html(application.children('page-title').text());
+        	           $('#month').append('<option value=\"' + i + '\">' + resourceBundle["month-" + i + "-full"] + '</option>');
+        	       }
 
-            $('#information-title').html(application.children('information-title').text());
-            $('#calendar-choice').html(application.children('calendar-choice').text());
-            $('#go-to').html(application.children('go-to').text());
-
-            var months = application.children('months');
-            monthNames = new Array();
-            monthShortNames = new Array();
-
-            var count = 1;
-            $('#month').html('');
-            months.children('month').each(function(){
-                var mName = $(this).children('full').text();
-                monthNames.push(mName);
-
-                monthShortNames.push($(this).children('short').text())
-
-                $('#month').append('<option value=\"' + count + '\">' + mName + '</option>');
-                count++;
-            });
-
-
-            dayNames = new Array();
-            dayShortNames = new Array();
-
-            count = 1;
-            var days = application.children('days');
-
-            days.children('day').each(function(){
-                var dName = $(this).children('full').text();
-                dayNames.push(dName);
-                dayShortNames.push($(this).children('short').text())
-                count++;
-            });
-
-            buildings();
-            calendar();
+        	       buildings();
+        	       calendar();
+        	 	    
+        	 	  }
+        	 	 });
         }
     });
-
 }
 
 function buildings() {
@@ -155,7 +128,7 @@ function buildings() {
         building = $.cookie("building");
     }
 
-    $.get("views/buildings.php", {
+    $.get("php/views/buildings.php", {
         "id": building
     },
     function(data){
@@ -176,7 +149,7 @@ function calendar() {
     if ($.cookie("month") != null) {
         month = $.cookie("month");
     }
-    $.get("views/calendar.php", {
+    $.get("php/views/calendar.php", {
         "view": view,
         "room": room,
         "year" : year,
@@ -191,13 +164,12 @@ function calendar() {
         $('#cal_roomName').remove();
         $('#cal_roomDescription').remove();
 
-        for (i = 0; i < 7; i++) {
-
-            $("#day" + (i+1)).html(dayNames[i]);
+        for (i = 1; i <= 7; i++) {
+            $("#day" + i).html(resourceBundle["day-" + (i+1) + "-full"]);
         }
-
+        $("#day" +7).html(resourceBundle["day-" + 1 + "-full"]);
     });
-    $("#monthname").html(monthNames[(parseInt(month) - 1)]);
+    $("#monthname").html(resourceBundle["month-" + (parseInt(month)) + "-full"]);
     $("#yearName").html(year);
 
     if (lang == 'ja') {
@@ -232,11 +204,12 @@ function browserLang() {
 
 //Initialisation de JQuery
 $(document).ready(function() {
-  
-    if (browserLang() != null && browserLang() != 'undefined' && browserLang() != "") {
-        lang = browserLang();
-        $.cookie("lang", lang);
-    }
+	if ($.cookie("lang") == null) {
+	    if (browserLang() != null && browserLang() != 'undefined' && browserLang() != "") {
+	        lang = browserLang();
+	        $.cookie("lang", lang);
+	    }
+	}
     //$.cookie("lang", lang);
     appUI();
 

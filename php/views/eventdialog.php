@@ -144,7 +144,8 @@ if (!$disable) {
         <input type="hidden" name="action" id="action" value="<?php echo $mode ?>" />
         <input type="hidden" name="event_id" id="event_id" value="<?php echo $event_id ?>" />
         <input type="hidden" name="date_id" id="date_id" value="<?php echo $date_id ?>" />
-        <input type="hidden" name="modifyall" id="modifyall" value="false" />
+        <!-- needs to be set to true otherwise single events will not be correctly deleted (orphelin) -->
+        <input type="hidden" name="modifyall" id="modifyall" value="true" />
     </div>
     <div class="input text">
         <label for="edate" id="event-date"><?php echo $languageLinker->resourceBundle->get("calendar-event-date");?></label>

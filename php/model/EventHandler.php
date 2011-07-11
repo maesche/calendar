@@ -270,12 +270,11 @@ class EventHandler {
 				if ($isFirstChild && $deleteAfter != null) {
 					$isFirstChild = $siblings[$i]["date"] >= $deleteAfter;
 				}
-				$firephp->log($isFirstChild, 'isFirstChild');
 			}
 			$firephp->log($siblings, 'siblings');
 			$firephp->log($isFirstChild, 'isFirstChild');
 			if ($isFirstChild) {
-				$isLast = $isFirstChild;
+				$isLast = $isFirstChild && !$deleteOnlyCurrent;
 			}
 
 			if ($isLast) {

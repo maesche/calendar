@@ -71,6 +71,10 @@ class Event {
     public function getMode() {
         return $this->mode;
     }
+    
+    public function setMode($mode) {
+    	return $this->mode = $mode;
+    }
 
     public function getDateId() {
         return $this->dateId;

@@ -2,7 +2,9 @@
 
 include_once("model/class/Event.php");
 include_once("model/EventHandler.php");
+require_once('lib/FirePHPCore/FirePHP.class.php');
 
+ob_start();
 class EventController {
 
 	private $room;
@@ -78,6 +80,8 @@ class EventController {
 	}
 
 	public function action($action) {
+		$firephp = FirePHP::getInstance(true);
+		$firephp->log($action, 'action');
 		switch ($action) {
 			case "delete-current" :
 				$this->eventHandler->delete($this->room, $this->event, true);
@@ -85,7 +89,7 @@ class EventController {
 			case "delete-all" :
 				$this->eventHandler->delete($this->room, $this->event, false, $this->event->getDBegin());
 				break;
-			case "update-current-nodate" :
+			/*case "update-current-nodate" :
 				$this->eventHandler->update($this->room, $this->event);
 				break;
 			case "update-current-withdate" :
@@ -96,10 +100,10 @@ class EventController {
 				if ($this->return["success"]) {
 					//delete current item from recurrent lists if new inserted
 
-					$this->eventHandler->delete($this->room, $this->event, $isLast);
+					$this->eventHandler->delete($this->room, $this->event);
 
 				}
-				break;
+				break;*/
 			case "update-all-nodate" :
 				//$this->eventHandler->update($this->room, $this->event, $this->event->getDBegin());
 
@@ -123,7 +127,7 @@ class EventController {
 
 				if ($this->return["success"]) {
 					//delete events
-					$this->eventHandler->delete($this->room, $this->event, true, $this->event->getDBegin());
+					$this->eventHandler->delete($this->room, $this->event, false, $this->event->getDBegin());
 				}
 				break;
 			case "add" :

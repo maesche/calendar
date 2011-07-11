@@ -94,7 +94,7 @@ function appUI() {
 
     $.ajax({
         type: "GET",
-        url: "php/controller/ApplicationController?lang=" + lang,
+        url: "php/controller/ApplicationController.php?lang=" + lang,
         success: function(msg) {
         	 $.ajax({
         	 	   type: "GET",
@@ -165,10 +165,9 @@ function calendar() {
         $('#cal_roomDescription').remove();
 
         for (i = 1; i <= 7; i++) {
-
-            $("#day" + i).html(resourceBundle["day-" + i + "full"]);
+            $("#day" + i).html(resourceBundle["day-" + (i+1) + "-full"]);
         }
-
+        $("#day" +7).html(resourceBundle["day-" + 1 + "-full"]);
     });
     $("#monthname").html(resourceBundle["month-" + (parseInt(month)) + "-full"]);
     $("#yearName").html(year);

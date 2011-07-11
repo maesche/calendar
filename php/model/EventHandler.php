@@ -4,7 +4,9 @@ include_once("helpers" . DIRECTORY_SEPARATOR . "ErrorHandler.php");
 include_once("model/class/Room.php");
 include_once("model/class/Event.php");
 include_once("model/class/Db.php");
+require_once('lib/FirePHPCore/FirePHP.class.php');
 
+ob_start();
 class EventHandler {
 
 	/**
@@ -250,31 +252,28 @@ class EventHandler {
 		$connection = null;
 		$query = null;
 		$result = null;
-
+		$firephp = FirePHP::getInstance(true);
 		$sql = "DELETE FROM events WHERE event_id = '" . $event->getId() . "'";
 		try {
 			$db = new Db();
 			$siblings = $this->getSiblings($event);
+			$firephp->log(count($siblings), 'count(siblings)');
+			$firephp->log($deleteOnlyCurrent, 'deleteOnlyCurrent as param');
+			$firephp->log($deleteAfter, 'deleteAfter');
 
 			$isLast = false;
 			$isFirstChild = true;
 
-			/*
-			 * while there is no childEvent with a begin before the event's begin
-			 * continue to test
-			 */
 			for ($i = 0; $i < count($siblings) && $isFirstChild; $i++) {
+
 				$isFirstChild = $event->getDBegin() <= $siblings[$i]["date"];
-				/*
-				 * if it is the firstChild and there a deleteAfter date specified,
-				 * the current sibling date needs to be greater or equal than the deleteAfter date
-				 */
 				if ($isFirstChild && $deleteAfter != null) {
 					$isFirstChild = $siblings[$i]["date"] >= $deleteAfter;
 				}
-
+				$firephp->log($isFirstChild, 'isFirstChild');
 			}
-
+			$firephp->log($siblings, 'siblings');
+			$firephp->log($isFirstChild, 'isFirstChild');
 			if ($isFirstChild) {
 				$isLast = $isFirstChild;
 			}
@@ -282,7 +281,8 @@ class EventHandler {
 			if ($isLast) {
 				$deleteOnlyCurrent = false;
 			}
-
+			$firephp->log($deleteOnlyCurrent, 'deleteOnlyCurrent after isLast');
+			$firephp->log($isLast, 'isLast');
 			if ($deleteOnlyCurrent || !$isLast) {
 				$sql = "DELETE FROM event_dates WHERE event_date_id = '" . $event->getDateId() . "'";
 
@@ -301,6 +301,9 @@ class EventHandler {
 		} catch (Exception $e) {
 			ErrorHandler::Error($e);
 		}
+
+
+		$firephp->log($sql, 'sql');
 
 		return $success;
 	}

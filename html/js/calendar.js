@@ -101,6 +101,19 @@ $(document).ready(function() {
     },{
         id : 'cancel'
     });
+    buttonsOpts[resourceBundle["calendar-event-delete"]] = $.extend(function() {                    
+        if($('#original_repeat_mode').val() != 'n' && $('#original_repeat_mode').val() != "") {
+            confirmChanges('delete');
+        /*if($("#modifyall").val() != "" && $("#modifyall").val() != null) {
+                sendForm('delete');
+            }*/
+        }
+        else {
+            sendForm('delete');
+        }
+    }, {
+        id : 'delete'
+    });       
     buttonsOpts[resourceBundle["calendar-event-save"]] = $.extend(function() {
 
         var errors = 0;
@@ -131,19 +144,7 @@ $(document).ready(function() {
     },{
         id : 'save'
     });
-    buttonsOpts[resourceBundle["calendar-event-delete"]] = $.extend(function() {                    
-        if($('#original_repeat_mode').val() != 'n' && $('#original_repeat_mode').val() != "") {
-            confirmChanges('delete');
-        /*if($("#modifyall").val() != "" && $("#modifyall").val() != null) {
-                sendForm('delete');
-            }*/
-        }
-        else {
-            sendForm('delete');
-        }
-    }, {
-        id : 'delete'
-    });   
+    
     
     $('.psf').click(function() {
         var $dialog = $('<div id=\"dialog\"></div>')

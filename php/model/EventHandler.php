@@ -259,8 +259,16 @@ class EventHandler {
 			$isLast = false;
 			$isFirstChild = true;
 
+			/*
+			 * while there is no childEvent with a begin before the event's begin
+			 * continue to test
+			 */
 			for ($i = 0; $i < count($siblings) && $isFirstChild; $i++) {
 				$isFirstChild = $event->getDBegin() <= $siblings[$i]["date"];
+				/*
+				 * if it is the firstChild and there a deleteAfter date specified,
+				 * the current sibling date needs to be greater or equal than the deleteAfter date
+				 */
 				if ($isFirstChild && $deleteAfter != null) {
 					$isFirstChild = $siblings[$i]["date"] >= $deleteAfter;
 				}

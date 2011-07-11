@@ -6,6 +6,7 @@
  * Version 20100817
  *
  */
+
 date_default_timezone_set('Europe/Zurich');
 session_start();
 /* Toutes les réponses sont envoyées en UTF-8 */

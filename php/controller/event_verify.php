@@ -99,7 +99,6 @@ if ($valide) {
         $modifyAll = true;
     } else if ($modifyAll == 'false') {
         $modifyAll = false;
-        $test = true;
     } else {
         $modifyAll = null;
     }

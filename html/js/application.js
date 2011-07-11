@@ -210,9 +210,7 @@ $(document).ready(function() {
 	        $.cookie("lang", lang);
 	    }
 	}
-    //$.cookie("lang", lang);
     appUI();
-
 
     $(".language").click(function() {
 

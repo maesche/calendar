@@ -13,6 +13,8 @@ date_default_timezone_set('Europe/Berlin');
  *******************************/
  /* SESSION-VARIABLES */
 
+$_SESSION['APPLICATION_PATH'] = "/Volumes/FILES/smeier/Sites/calendar/";
+
 $_SESSION['REMOTE_USER'] = null;
 if (isset($_SERVER['HTTP_SHIB_PERSON_UID']) && isset($_SERVER['HTTP_SHIB_SWISSEP_HOMEORGANIZATION'])) {
     $_SESSION['REMOTE_USER'] = $_SERVER['HTTP_SHIB_PERSON_UID'] . "@" . $_SERVER['HTTP_SHIB_SWISSEP_HOMEORGANIZATION'];
@@ -31,8 +33,6 @@ $_SESSION['DB_LOGGING'] = 1;
 
 
 /* CONFIG CALENDAR */
-//Langue
-$_SESSION['LANGUAGE_CODE'] = "fr";
 //Nombre d'événéments affichés par jour (dans vue mensuelle)
 $_SESSION['MAX_TITLES_DISPLAYED'] = 10;
 //Nombre de caractères limite pour un titre d'événement

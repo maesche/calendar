@@ -67,7 +67,7 @@
 	<entry key="calendar-error-access">Vous n'avez pas d'autorisation pour effectuer cette action.</entry>
 	<entry key="calendar-error-room">La salle n'existe pas.</entry>
 	<entry key="calendar-error-action">Cette action n'existe pas (choisir add | edit | delete)</entry>	
-	<entry key="calendar-error-invalid">Caractères invalids (ne pas utiliser JavaScript/HTML/SQL, etc.)</entry>	
+	<entry key="calendar-error-invalid">Veuillez ne pas utiliser de caractères spéciaux dans les champs de saisie.</entry>	
 	<entry key="calendar-error-dateFormat">Format de date invalid.</entry>	
 	<entry key="calendar-error-system">Erreur système</entry>		
 	

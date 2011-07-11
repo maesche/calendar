@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS sites (
   site_id INTEGER(9) NOT NULL AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
   PRIMARY KEY (site_id)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO sites VALUES 
 (1, 'Dorigny'), 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS buildings (
   name VARCHAR(30) NOT NULL,
   PRIMARY KEY (building_id),
     FOREIGN KEY (site_id) REFERENCES sites(site_id)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO buildings VALUES 
 (7, 2, '7'),
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS room_categories (
   room_category_id INTEGER(9) NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   PRIMARY KEY (room_category_id)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `room_categories` (`room_category_id`, `name`) VALUES
 (1, 'other'),
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS rooms (
   FOREIGN KEY (building_id) REFERENCES buildings(building_id),
   FOREIGN KEY (room_category_id) REFERENCES room_categories(room_category_id)
     /*ON DELETE SET DEFAULT*/
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 INSERT INTO `rooms` (`room_id`, `building_id`, `room_category_id`, `local`, `name`, `manager`, `description`, `admins`, `superAdmins`, `acceptStudents`, `monitoring`, `maxEvents`) VALUES
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS events (
     ON DELETE cascade,
   /*le check est ignoré par mysql et sert donc qu'à titre explicatif */
   CONSTRAINT c_mode CHECK (mode IN ('a', 'd', 'w', '2w', 'm', 'y'))
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS event_dates;
 CREATE TABLE IF NOT EXISTS event_dates (
@@ -153,7 +153,7 @@ CREATE TABLE IF NOT EXISTS event_dates (
   PRIMARY KEY (event_date_id),
   FOREIGN KEY (event_id) REFERENCES events(event_id)
     ON DELETE cascade
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS logs;
 CREATE TABLE IF NOT EXISTS logs (
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS logs (
   log_repeat_mode VARCHAR(5),
   log_repeat_end DATE, 
   PRIMARY KEY (log_id)
-) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 /*

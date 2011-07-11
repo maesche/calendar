@@ -2,7 +2,9 @@
 
 include_once("model/class/Event.php");
 include_once("model/EventHandler.php");
+require_once('lib/FirePHPCore/FirePHP.class.php');
 
+ob_start();
 class EventController {
 
 	private $room;
@@ -78,6 +80,9 @@ class EventController {
 	}
 
 	public function action($action) {
+		$firephp = FirePHP::getInstance(true);
+		
+		$firephp->log($action, 'action');
 		switch ($action) {
 			case "delete-current" :
 				$this->eventHandler->delete($this->room, $this->event, true);

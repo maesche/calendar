@@ -4,7 +4,9 @@ include_once("helpers" . DIRECTORY_SEPARATOR . "ErrorHandler.php");
 include_once("model/class/Room.php");
 include_once("model/class/Event.php");
 include_once("model/class/Db.php");
+require_once('lib/FirePHPCore/FirePHP.class.php');
 
+ob_start();
 class EventHandler {
 
     /**
@@ -279,7 +281,9 @@ class EventHandler {
         } catch (Exception $e) {
             ErrorHandler::Error($e);
         }
-
+        $firephp = FirePHP::getInstance(true);
+        
+        $firephp->log($sql, 'sql');
 
         return $success;
     }

@@ -67,7 +67,7 @@
 	<entry key="calendar-error-access">You don't have access to perform this action.</entry>
 	<entry key="calendar-error-room">Wrong room number.</entry>
 	<entry key="calendar-error-action">This action doesn't exist (choose add | edit | delete)</entry>	
-	<entry key="calendar-error-invalid">Invalid characters (don't use JavaScript/HTML/SQL, etc.)</entry>	
+	<entry key="calendar-error-invalid">Don't use special characters in text fields.</entry>	
 	<entry key="calendar-error-dateFormat">Invalid date format.</entry>	
 	<entry key="calendar-error-system">System error.</entry>		
 	
